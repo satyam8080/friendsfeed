@@ -4,9 +4,7 @@
                 $(".nav-item").removeClass("active");
                 $(this).addClass("active");  
             });
-           
-     $('#nl').textContent = "";
-     
-     
-     
+            $(".arrow_link").click(function(){
+                alert("hello")
+            })
         });
