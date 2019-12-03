@@ -1,4 +1,5 @@
-	@include('templates.header')
+	@include('templates/header')
+<link href=" {{ URL::asset('asset/css/logincss.css') }} " type="text/css" rel="stylesheet">
 
 	<div class="body"><!--body-->
 	<div class="main_div"><!--shadow bar  #green color-->
@@ -94,7 +95,7 @@
 
 
 	</div>
-<script type="text/javascript" src="resources/js/loginjs.js"></script>
+<script type="text/javascript" src=" {{ asset('asset/js/loginjs.js') }} "></script>
 
 
 @include('templates.footer')
