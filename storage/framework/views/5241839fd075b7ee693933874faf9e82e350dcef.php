@@ -1,4 +1,5 @@
-	<?php echo $__env->make('templates.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+	<?php echo $__env->make('templates/header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<link href=" <?php echo e(URL::asset('asset/css/logincss.css')); ?> " type="text/css" rel="stylesheet">
 
 	<div class="body"><!--body-->
 	<div class="main_div"><!--shadow bar  #green color-->
@@ -94,7 +95,7 @@
 
 
 	</div>
-<script type="text/javascript" src="resources/js/loginjs.js"></script>
+<script type="text/javascript" src=" <?php echo e(asset('asset/js/loginjs.js')); ?> "></script>
 
 
 <?php echo $__env->make('templates.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

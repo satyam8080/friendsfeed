@@ -23,5 +23,5 @@ function signupbox(){
 	signup_div.css({'display': 'block'});
 }
 function home() {
-	open('home.html','_self');
+	open('home','_self');
 }
