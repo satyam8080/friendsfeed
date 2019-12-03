@@ -1,0 +1,120 @@
+.body{/*contain whole code div*/
+height: 100%;
+width: 100%;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 0;
+background-color: #e4edea;
+text-align: center;
+}
+.main_div{/*div for green thing */
+	width: inherit;
+	height: 30%;
+	position: inherit;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	background-color: #71E35F;
+}
+.login_signup_div{ /* div that contain login and signup divs*/
+	position: inherit;
+	top: 20%;
+	left:35%;
+	z-index: 999;
+	width: 30%;
+	height: 70%;
+    background-color: white;		
+}
+.button_div{
+	background-color: white; /*div that contains buttons*/	
+}
+#login{
+ float: left;
+ border-bottom: #71E35F solid 2px;
+}
+#signup{
+	float: right;
+}
+.button{ /*class for both login and signup buttons*/
+	text-align: center;
+	background-color: white;
+	border:white solid;
+	color: #000000;
+	height: 3rem;
+	width: 50%;
+	padding: .5rem;
+	cursor: pointer;
+	font-style: bold;
+
+
+}
+.button:focus{
+	outline: 0;
+}
+.button:hover{
+	background-color: #ccfac4;
+}
+.login_div{
+	text-align: center;
+	padding-top: 6rem;
+	padding-left: .5rem;
+	padding-right: .5rem;
+}
+#submit{
+	display: block;
+	width: 50%;
+	height: 3rem;
+	background-color: #71E35F;
+	color: white;
+
+}
+.signup_div{ /*div for signup*/
+	text-align: center;
+	display: none;
+	padding-top: 6rem;
+	padding-left: .5rem;
+	padding-right: .5rem;
+}
+.signupButton{
+	background-color: #71E35F !important;
+	border-color: #71E35F !important;
+}
+.signupButton:focus{
+ outline: none !important;
+
+}
+
+
+/*code from bootsnip */
+
+
+	.form_container {
+			margin-top: 100px;
+		}
+		.login_btn {
+			width: 100%;
+			background: #71E35F !important;
+			color: white !important;
+		}
+		.login_btn:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+		.login_container {
+			padding: 0 2rem;
+		}
+		.input-group-text {
+			background: #71E35F !important;
+			color: white !important;
+			border: 0 !important;
+			border-radius: 0.25rem 0 0 0.25rem !important;
+		}
+		.input_user,
+		.input_pass:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+		.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+			background-color: #71E35F !important;
+		}
