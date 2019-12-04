@@ -75,26 +75,56 @@
 </button>
 
 <!-- Modal -->
+     <form accept-charset="UTF-8" action="" method="POST">
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="background-color : #ccfac4 !important">
         <h5 class="modal-title" id="exampleModalLongTitle">Create Post</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+      
+          <!--code fron bootsnip-->
+          <div class="container" style="background-color:#e4edea !important">
+	<div class="row">
+		<div class="span4 well" style="padding-bottom:0">
+           
+                <textarea class="span4" style="width :28rem; resize : none; " id="new_message" name="new_message"
+                placeholder="What's in Mind ?" rows="5"></textarea>
+
+
+        </div>
+	</div>
+</div>
+          
+          
+          
+          
+          
+          
+          <!--end bootsnip-->
+          
+          
+          
+          
+          
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <div class="modal-footer" style="background-color:#e4edea !important" >
+          <label for="image_post" id="image_post_label" class="mr-auto"> <img  src="{{asset('asset/images/photos.png')}}" alt="submit" id="image_post_png"></label>
+                <input type="file" name="image" id="image_post" class="att_icon">
+           <label for="video_post" id="image_post_label" class="mr-auto"> <img  src="{{asset('asset/images/videos.png')}}" alt="submit" id="image_post_png"></label>
+                <input type="file" name="image" id="video_post" class="att_icon">
+           <label for="feeling_post" id="image_post_label" class="mr-auto"> <img  src="{{asset('asset/images/feelings.png')}}" alt="submit" id="image_post_png"></label>
+                <input type="file" name="image" id="feeling_post" class="att_icon">
         <button type="button" class="btn btn-primary post_button">Post</button>
       </div>
     </div>
   </div>
 </div>
-
+    </form>
 
 
 

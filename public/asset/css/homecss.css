@@ -84,4 +84,21 @@
 }
 .arrow_link:hover{
     cursor: pointer;
+} 
+.textarea_class{
+    width: 100% !important;
+}
+#image_post_png{
+    width: 2.5rem;
+    height:2rem;
+    cursor: pointer;
+}
+.att_icon{
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+#image_post_label{
+    float: left !important;
+    left: 1rem !important;
 }
