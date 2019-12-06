@@ -1,6 +1,6 @@
 @include('templates.header') 
 <link rel="stylesheet" type="text/css" href="{{asset('asset/css/homecss.css')}} ">
-<nav class="navbar navbar-expand navbar-light bg-white">
+<nav class="navbar navbar-expand navbar-light bg-white fixed-top">
         <div class="container">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
@@ -59,13 +59,22 @@
                         <a class="nav-link"><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 32px; width: 32px;"></a>
                     </li>
                 </ul>
-                <a class="arrow_link">
+              
+                 <a class="arrow_link" id="arrow_link">
                 <img src="{{asset('asset/images/arrow.png')}}" alt="arrow down" class="arrow_down">
                 </a>
+                    
+                    <ul type="none" style="background-color:white;">
+                        <li  class="temp">
+                        logout
+                        </li>
+                    
+                    </ul>
+               
+                
             </div>
         </div>
     </nav>
-
 
 
 <div>
@@ -123,12 +132,113 @@
       </div>
     </div>
   </div>
-</div>
+         </div>
     </form>
 
-
-
 </div>
+<!--code for space-->
+<div style="heigt:3rem;width:100%;margin:auto;">Don't peek here !you are losser</div>
+
+
+
+<!--code for cards-->
+<!--1-->
+<div class="card" style="width: 34rem; margin:auto; margin-top : 2rem; ">
+    <div class="card-header" style="padding-bottom:0rem !important;">
+
+        <img src="{{asset('asset/images/raj.jpg')}}" alt="" class="float-left rounded-circle" style="height: 32px; width: 32px;">
+
+  
+        <div style="height:100%; float:left; padding-left:1rem;">
+ 
+    <h5 class="card-title" style=" line-height:1rem !important;">Raj Vashishtha</h5>
+            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;">@vashiraj2000</a></p>
+        </div>
+  
+        
+    </div>
+  <img src="{{asset('asset/images/demo.jpg')}}" class="card-img-top"  alt="cardimage">
+  <div class="card-body">
+       <h5 class="card-title">First post</h5>
+    <p class="card-text">You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size</p>
+
+    
+  </div>
+    <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
+            <a href="javascript:void(0)" id="changenow" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
+       
+          <a href="javascript:void(0)" class="btn" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
+        <span style="color:#999;">10</span>
+        </a>
+    
+    </div>
+</div>
+<!--2-->
+<div class="card" style="width: 34rem; margin:auto; margin-top : 2rem; ">
+    <div class="card-header" style="padding-bottom:0rem !important;">
+
+        <img src="{{asset('asset/images/raj.jpg')}}" alt="" class="float-left rounded-circle" style="height: 32px; width: 32px;">
+
+  
+        <div style="height:100%; float:left; padding-left:1rem;">
+ 
+    <h5 class="card-title" style=" line-height:1rem !important;">Raj Vashishtha</h5>
+            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;">@vashiraj2000</a></p>
+        </div>
+  
+        
+    </div>
+  <img src="{{asset('asset/images/bluesky.jpg')}}" class="card-img-top"  alt="cardimage">
+  <div class="card-body">
+       <h5 class="card-title">First post</h5>
+    <p class="card-text">You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size</p>
+
+    
+  </div>
+    <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
+            <a href="javascript:void(0)" id="changenow-2" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
+       
+          <a href="javascript:void(0)" class="btn" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
+        <span style="color:#999;">10</span>
+        </a>
+    
+    </div>
+</div>
+<!--3-->
+<div class="card" style="width: 34rem; margin:auto; margin-top : 2rem; ">
+    <div class="card-header" style="padding-bottom:0rem !important;">
+
+        <img src="{{asset('asset/images/raj.jpg')}}" alt="" class="float-left rounded-circle" style="height: 32px; width: 32px;">
+
+  
+        <div style="height:100%; float:left; padding-left:1rem;">
+ 
+    <h5 class="card-title" style=" line-height:1rem !important;">Raj Vashishtha</h5>
+            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;">@vashiraj2000</a></p>
+        </div>
+  
+        
+    </div>
+  <img src="{{asset('asset/images/bluetree.jpg')}}" class="card-img-top"  alt="cardimage">
+  <div class="card-body">
+       <h5 class="card-title">First post</h5>
+    <p class="card-text">You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size</p>
+
+    
+  </div>
+    <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
+            <a href="javascript:void(0)" id="changenow-3" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
+       
+          <a href="javascript:void(0)" class="btn" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
+        <span style="color:#999;">10</span>
+        </a>
+    
+    </div>
+</div>
+
+
+<!--code for cards end-->
+
 
 
 
