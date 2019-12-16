@@ -1,4 +1,12 @@
 @include('templates.header') 
+
+ {{ $lastSpace = strrpos(Auth::user()->name ," ") }}
+
+
+{{ $userName =  substr(Auth::user()->name ,0,$lastSpace)
+}}
+
+
 <link rel="stylesheet" type="text/css" href="{{asset('asset/css/homecss.css')}} ">
 <nav class="navbar navbar-expand navbar-light bg-white fixed-top">
         <div class="container">
@@ -56,7 +64,7 @@
                 </form>
                 <ul class="navbar-nav d-none d-md-block">
                     <li class="nav-item">
-                        <a class="nav-link"><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 32px; width: 32px;"></a>
+                        <a class="nav-link"><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 32px; width: 32px;"><b> {{ $userName }} </b></a>
                     </li>
                 </ul>
               
@@ -66,7 +74,11 @@
                     
                     <ul type="none" style="background-color:white;">
                         <li  class="temp">
-                        logout
+                          <form action="{{ URL('logout') }}" method="POST">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn login_btn" >Logout</button>
+                          </form>
+                        
                         </li>
                     
                     </ul>
@@ -98,15 +110,15 @@
       
           <!--code fron bootsnip-->
           <div class="container" style="background-color:#e4edea !important">
-	<div class="row">
-		<div class="span4 well" style="padding-bottom:0">
+  <div class="row">
+    <div class="span4 well" style="padding-bottom:0">
            
                 <textarea class="span4" style="width :28rem; resize : none; " id="new_message" name="new_message"
-                placeholder="What's in Mind ?" rows="5"></textarea>
+                placeholder="What's in your Mind ?" rows="5"></textarea>
 
 
         </div>
-	</div>
+  </div>
 </div>
           
           
@@ -137,7 +149,7 @@
 
 </div>
 <!--code for space-->
-<div style="heigt:3rem;width:100%;margin:auto;">Don't peek here !you are losser</div>
+<div style="heigt:3rem;width:100%;margin:auto;">Don't peek here ! </div>
 
 
 
@@ -151,7 +163,7 @@
   
         <div style="height:100%; float:left; padding-left:1rem;">
  
-    <h5 class="card-title" style=" line-height:1rem !important;">Raj Vashishtha</h5>
+    <h5 class="card-title" style=" line-height:1rem !important;">  {{ Auth::user()->name }} </h5>
             <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;">@vashiraj2000</a></p>
         </div>
   
@@ -182,7 +194,7 @@
   
         <div style="height:100%; float:left; padding-left:1rem;">
  
-    <h5 class="card-title" style=" line-height:1rem !important;">Raj Vashishtha</h5>
+    <h5 class="card-title" style=" line-height:1rem !important;"> {{ Auth::user()->name }} </h5>
             <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;">@vashiraj2000</a></p>
         </div>
   
@@ -213,7 +225,7 @@
   
         <div style="height:100%; float:left; padding-left:1rem;">
  
-    <h5 class="card-title" style=" line-height:1rem !important;">Raj Vashishtha</h5>
+    <h5 class="card-title" style=" line-height:1rem !important;"> {{ Auth::user()->name }} </h5>
             <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;">@vashiraj2000</a></p>
         </div>
   

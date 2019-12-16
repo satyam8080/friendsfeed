@@ -15,9 +15,9 @@ trait RegistersUsers
      *
      * @return \Illuminate\Http\Response
      */
-    public function showRegistrationForm()
+    public function showRegistrationForm() 
     {
-        return view('auth.register');
+        return view('index');
     }
 
     /**
@@ -28,7 +28,13 @@ trait RegistersUsers
      */
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
+        /*$this->validator(request(['name','email','password']))->validate();*/
+      //  $this->validator($request->all())->validate();   
+        $this->validate(request(),[
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
 
         event(new Registered($user = $this->create($request->all())));
 

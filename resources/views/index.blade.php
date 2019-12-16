@@ -1,4 +1,11 @@
 	@include('templates/header')
+	@if (Auth::user() != NULL)
+	<script> 
+		window.location = "http://localhost/friendsfeed/public/home";
+	</script>
+	@endif
+
+
 <link href=" {{ URL::asset('asset/css/logincss.css') }} " type="text/css" rel="stylesheet">
 
 	<div class="body"><!--body-->
@@ -11,7 +18,7 @@
        <button id="signup" class="button" onclick="signupbox()">SIGN UP</button>
    </div>
 <div class="login_div">
-	<p><b> Please enter your details </b> </p>
+	<p><b> Please enter your details  </b> </p>
 	<!-- <form>
 		<input type="email" name="email" class="login_field" placeholder="email"   required>
 		<input type="password" name="password" class="login_field" placeholder="password" required>
@@ -19,18 +26,20 @@
 
 	</form> -->
 
-	<form>
+	<form method="POST" action=" {{ URL('login') }} "> 
+		{{ csrf_field() }}
+
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="far fa-envelope"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="Email">
+							<input type="text" name="email" class="form-control input_user" value="" placeholder="Email">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="Password">
+							<input type="password" name="password" class="form-control input_pass" value="" placeholder="Password">
 						</div>
 						<div class="form-group">
 							<div class="custom-control custom-checkbox">
@@ -39,7 +48,7 @@
 							</div>
 						</div>
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="button" name="button" class="btn login_btn" onclick="home()">Login</button>
+				 	<button type="submit" class="btn login_btn" >Login</button>
 				   </div>
 					</form>
 					   <div style="padding-top: 1rem;">
@@ -54,24 +63,27 @@
 <div class="signup_div">
 		<!-- code from bootsnip -->
 			<p><b> Please enter your details to resister </b> </p>
-	<form>
+
+	<form method="POST" action=" {{ URL('register') }} ">
+		{{ csrf_field() }}
+		
 	<div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="" class="form-control " placeholder="Full name" type="text">
+        <input name="name" class="form-control " placeholder="Full name" type="text">
     </div> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 		 </div>
-        <input name="" class="form-control " placeholder="Email address" type="email">
+        <input name="email" class="form-control " placeholder="Email address" type="email">
     </div> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-        <input class="form-control " placeholder="Create password" type="password">
+        <input name="password" class="form-control " placeholder="Create password" type="password">
     </div> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
@@ -80,7 +92,7 @@
         <input class="form-control " placeholder="Repeat password" type="password">
     </div>                                       
     <div class="form-group">
-        <button type="submit" class="btn login_btn signupButton" onclick="home()"> Sign in</button>
+        <button type="submit" class="btn login_btn signupButton" > Sign up</button>
     </div>                                                
 </form>
 
