@@ -7,7 +7,15 @@
 }}
 
 
-<link rel="stylesheet" type="text/css" href="{{asset('asset/css/homecss.css')}} ">
+
+<!--<link rel="stylesheet" href="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.css">-->
+<link rel="stylesheet" href="{{asset('asset/css/emojionearea.css')}}">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
+<script type="text/javascript" src="{{asset('asset/js/homejs.js')}}">
+
+ 
+</script>
 <nav class="navbar navbar-expand navbar-light bg-white fixed-top">
         <div class="container">
             <div class="collapse navbar-collapse">
@@ -64,26 +72,31 @@
                 </form>
                 <ul class="navbar-nav d-none d-md-block">
                     <li class="nav-item">
-                        <a class="nav-link"><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 32px; width: 32px;"><b> {{ $userName }} </b></a>
+                        <a class="nav-link"><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 32px; width: 32px;">
+                      <b>  {{ $userName }}  </b>
+                        </a>
                     </li>
                 </ul>
-              
-                 <a class="arrow_link" id="arrow_link">
-                <img src="{{asset('asset/images/arrow.png')}}" alt="arrow down" class="arrow_down">
-                </a>
-                    
-                    <ul type="none" style="background-color:white;">
-                        <li  class="temp">
-                          <form action="{{ URL('logout') }}" method="POST">
+              <!--for log out-->
+     <div class="dropdown">
+  <button class="dropbtn"> <img src="{{asset('asset/images/arrow.png')}}" alt="arrow down" class="arrow_down"></button>
+  <div class="dropdown-content" id="dropdown_content">
+    
+      <form action="{{ URL('logout') }}" method="POST">
                             {{ csrf_field() }}
-                            <button type="submit" class="btn login_btn" >Logout</button>
+                          <!--  <a href="javascript:void(0)" name="logout"><i class="fas fa-sign-out-alt fa-lg"></i>    Log Out</a>-->
+          <button type="submit" name="logout">Logout</button>
                           </form>
-                        
-                        </li>
-                    
-                    </ul>
+    <a href="javascript:void(0)"><i class="fa fa-lock fa-lg"></i>  Privacy</a>
+    <a href="#about_us"><i class="fa fa-user fa-lg" aria-hidden="true"></i> About Us</a>
+  </div>
+</div>
                
+                <!--for log out end-->
                 
+            
+
+
             </div>
         </div>
     </nav>
@@ -97,7 +110,7 @@
 
 <!-- Modal -->
      <form accept-charset="UTF-8" action="" method="POST">
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" style="z-index  : 9999 !important;" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color : #ccfac4 !important">
@@ -110,28 +123,20 @@
       
           <!--code fron bootsnip-->
           <div class="container" style="background-color:#e4edea !important">
-  <div class="row">
-    <div class="span4 well" style="padding-bottom:0">
+	<div class="row">
+		<div class="span4 well" style="padding-bottom:0; width : 28rem !important">
            
-                <textarea class="span4" style="width :28rem; resize : none; " id="new_message" name="new_message"
-                placeholder="What's in your Mind ?" rows="5"></textarea>
+                <textarea class="span4" style="resize : none; " id="new_post" name="new_post"
+                placeholder="What's in Mind ?(use 'tab' to add emoji faster)" rows="5"></textarea>
 
 
         </div>
-  </div>
-</div>
-          
-          
-          
-          
+	</div>
+</div>       
           
           
           <!--end bootsnip-->
-          
-          
-          
-          
-          
+               
       </div>
       <div class="modal-footer" style="background-color:#e4edea !important" >
           <label for="image_post" id="image_post_label" class="mr-auto"> <img  src="{{asset('asset/images/photos.png')}}" alt="submit" id="image_post_png"></label>
@@ -149,13 +154,14 @@
 
 </div>
 <!--code for space-->
-<div style="heigt:3rem;width:100%;margin:auto;">Don't peek here ! </div>
+<div style="heigt:3rem;width:100%;margin:auto; text-align:center;">Don't peek here !</div>
 
 
 
 <!--code for cards-->
+<div class="center_main">
 <!--1-->
-<div class="card" style="width: 34rem; margin:auto; margin-top : 2rem; ">
+<div class="card" style="width: 37rem; margin-top : 2rem; ">
     <div class="card-header" style="padding-bottom:0rem !important;">
 
         <img src="{{asset('asset/images/raj.jpg')}}" alt="" class="float-left rounded-circle" style="height: 32px; width: 32px;">
@@ -163,13 +169,13 @@
   
         <div style="height:100%; float:left; padding-left:1rem;">
  
-    <h5 class="card-title" style=" line-height:1rem !important;">  {{ Auth::user()->name }} </h5>
-            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;">@vashiraj2000</a></p>
+    <h5 class="card-title" style=" line-height:1rem !important;"> {{ Auth::user()->name }} </h5>
+            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href="">@vashiraj2000</a></p>
         </div>
   
         
     </div>
-  <img src="{{asset('asset/images/demo.jpg')}}" class="card-img-top"  alt="cardimage">
+  <img src="{{asset('asset/images/dragon_classical_light.jpg')}}" class="card-img-top"  alt="cardimage">
   <div class="card-body">
        <h5 class="card-title">First post</h5>
     <p class="card-text">You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size</p>
@@ -185,8 +191,8 @@
     
     </div>
 </div>
-<!--2-->
-<div class="card" style="width: 34rem; margin:auto; margin-top : 2rem; ">
+<!--1-->
+<div class="card" style="width: 37rem;  margin-top : 2rem; ">
     <div class="card-header" style="padding-bottom:0rem !important;">
 
         <img src="{{asset('asset/images/raj.jpg')}}" alt="" class="float-left rounded-circle" style="height: 32px; width: 32px;">
@@ -195,12 +201,12 @@
         <div style="height:100%; float:left; padding-left:1rem;">
  
     <h5 class="card-title" style=" line-height:1rem !important;"> {{ Auth::user()->name }} </h5>
-            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;">@vashiraj2000</a></p>
+            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href="">@vashiraj2000</a></p>
         </div>
   
         
     </div>
-  <img src="{{asset('asset/images/bluesky.jpg')}}" class="card-img-top"  alt="cardimage">
+  <img src="{{asset('asset/images/demo.jpg')}}" class="card-img-top"  alt="cardimage">
   <div class="card-body">
        <h5 class="card-title">First post</h5>
     <p class="card-text">You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size</p>
@@ -208,7 +214,7 @@
     
   </div>
     <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
-            <a href="javascript:void(0)" id="changenow-2" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
+            <a href="javascript:void(0)" id="changenow-0" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
        
           <a href="javascript:void(0)" class="btn" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
         <span style="color:#999;">10</span>
@@ -216,46 +222,39 @@
     
     </div>
 </div>
-<!--3-->
-<div class="card" style="width: 34rem; margin:auto; margin-top : 2rem; ">
-    <div class="card-header" style="padding-bottom:0rem !important;">
-
-        <img src="{{asset('asset/images/raj.jpg')}}" alt="" class="float-left rounded-circle" style="height: 32px; width: 32px;">
-
-  
-        <div style="height:100%; float:left; padding-left:1rem;">
- 
-    <h5 class="card-title" style=" line-height:1rem !important;"> {{ Auth::user()->name }} </h5>
-            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;">@vashiraj2000</a></p>
-        </div>
-  
-        
-    </div>
-  <img src="{{asset('asset/images/bluetree.jpg')}}" class="card-img-top"  alt="cardimage">
-  <div class="card-body">
-       <h5 class="card-title">First post</h5>
-    <p class="card-text">You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size</p>
-
     
-  </div>
-    <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
-            <a href="javascript:void(0)" id="changenow-3" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
-       
-          <a href="javascript:void(0)" class="btn" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
-        <span style="color:#999;">10</span>
-        </a>
-    
-    </div>
 </div>
-
-
 <!--code for cards end-->
 
 
+<!--code for left side vertical bar-->
+<div class="left_side_main">
+<a href="javascript:void(0)">hello</a>
+<a href="javascript:void(0)">world</a>
+<a href="javascript:void(0)">here</a>
 
+</div>
+
+<hr style="height:2px; width:98%; margin-top:1rem; margin-left:1rem; color : #888888; ">
+<div class="about_us" id="about_us">
+    <h2 align="center" style="text-decoration:underline;">About Us</h2>
+   <h3>Developers :</h3>
+    <label >Raj Vashishtha , </label>
+    <label>Satyam , </label>
+    <label>Anmol Nagvanshi</label>
+    <label>Mayank</label>
+
+
+</div>
 
 
 
 <script type="text/javascript" src="{{asset('asset/js/homejs.js')}}"></script>
+
+
 @include(' templates.footer')
+    
+
+
+
     

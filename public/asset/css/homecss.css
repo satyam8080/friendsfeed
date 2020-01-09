@@ -51,6 +51,7 @@
     position: fixed;
     bottom: 4rem;
     left: 4rem;
+    z-index: 999;
     box-shadow: 1rem 1rem 2rem #999;
     height: 3rem;
     width: 3rem;
@@ -73,21 +74,8 @@
 .arrow_down{/*downward triangle size code*/
    height: 1rem;
     width: 1rem;
+       transition: transform .5s ease 0s;
     
-}
-.arrow_link{/*button that contains arrow down image*/
-    background: white;
-    border: white solid 1px;;
-    outline: none;
-}
-.arrow_link:active{
-    outline: none;
-}
-.arrow_link:hover{
-    cursor: pointer;
-} 
-.textarea_class{
-    width: 100% !important;
 }
 #image_post_png{
     width: 2.5rem;
@@ -103,18 +91,105 @@
     float: left !important;
     left: 1rem !important;
 }
-.temp{/*for logout*/
-    border: #71e35f solid .5px;
-    background-color: white;
-    position: fixed;
-    z-index: 99;
-    border-radius: .5rem;
-    box-shadow: .2rem .2rem .2rem;
-    padding: .5rem;
-    display: none;
-}
 .btn:focus,.btn:active:focus,.btn.active:focus,
 .btn.focus,.btn:active.focus,.btn.active.focus {
     outline: none;
     box-shadow: none;
+}
+
+
+/*from w3schools*/
+
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: white;
+  color: white;
+  padding: .1rem;
+  font-size: .5rem;
+  border: none;
+  cursor: pointer;
+    outline: none;
+}
+.dropbtn:focus{
+    outline: none;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    margin-left: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+/*my code*/
+.dropdown:hover .arrow_down{
+    transform: rotateX(180deg);
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #aeffae}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*w3 end here*/
+/*code for center card div*/
+.center_main{
+    width: 37rem; 
+    margin:auto; 
+    margin-top:2rem;
+}
+
+/*code for left side vertical bar*/
+.left_side_main{
+    background-color:#e4edea;
+    width: 17rem;
+    position: fixed;
+    left: .5rem;
+    top: 3.5rem;
+    display: inline;
+    border-right: 2px solid #c1bebe;
+    height: 91%;
+    text-align: center;
+    padding-right: .8rem;
+}
+.left_side_main a{
+     color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+    border-bottom: 1px solid #c1bebe;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+.left_side_main a:hover{
+    background-color: #c2fed2;
+    cursor: pointer;
+}
+.about_us{
+    position: absolute;
+    z-index: 99;
+    text-align: center;
+    width: 100%;
 }
