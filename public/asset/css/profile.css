@@ -1,0 +1,48 @@
+.center_div{
+    background-color: white;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 2rem;
+    width: 58rem;
+    height: 100%;
+}
+.profile_div{
+    margin: auto;
+    text-align: center;
+    width: 100%;
+}
+.profile_pic{
+    border-radius: 7rem;
+    display: inline-block;
+    width: 15rem;
+    height: 15rem;
+}
+.edit_btn{
+    margin-left:.5rem;
+    background: none;
+    border: none;
+}
+button:hover,button:focus,button:active,button:visited{
+    border: none;
+    outline: none;
+}
+
+.profile_slide_btn{
+   text-align: center;
+	background-color: white;
+	border:none;
+	color: #000000;
+	height: 3rem;
+	width: 33%;
+	padding: .5rem;
+	cursor: pointer;
+	font-style: bold;
+}
+.profile_slide_btn:hover{
+	background-color: #ccfac4;
+}
+.active_slide{
+     border-bottom: #71e35f solid 2px !important;
+}

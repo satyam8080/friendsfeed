@@ -18,6 +18,13 @@ Route::get('/', function () {
 Route::get('/test',function() {
 	return view('index');
 });
+Route::get('/profile',function() {
+	return view('pages/profile');
+});
+
+Route::get('/selectusername',function() {
+	return view('pages/username');
+});
 
 Auth::routes();
 

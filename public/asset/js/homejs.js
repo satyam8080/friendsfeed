@@ -1,6 +1,26 @@
-var change; 
+var change;
+var i;
+$(document).ready(function(){
+     $("#new_post").emojioneArea({
+         pickerPosition : "bottom",
+         tonesStyle : "checkbox",
+         /*autocomplete : false*/
+     });
+    document.getElementById("1").classList.add("active");
+    
+    /*  var hash;
 
-$(document).ready(function() {
+    for(i=1;i<6;i++)
+        {
+            hash = "#"+i.toString();
+            
+         $(hash).removeClass("active");
+        }
+    */
+    
+    
+    
+          
      var count  = 1;
             $("li.nav-item").click(function (e) {
                 e.preventDefault();
@@ -36,12 +56,13 @@ $(document).ready(function() {
           $(n).toggleAttrVal("src", "https://image.flaticon.com/icons/svg/148/148836.svg", "https://image.flaticon.com/icons/svg/1077/1077035.svg");
      }
      
-     
-     /*now jquery function ends*/
-   /*  
-    $('#changenow').click(function(){
-        $('#changenow > img').toggleAttrVal("src", "https://image.flaticon.com/icons/svg/148/148836.svg", "https://image.flaticon.com/icons/svg/1077/1077035.svg");
-        
-    })*/
-        
-        });
+     /*activate this code if logout wnat to be clicked activating*/
+   /*  dropbtn = function(){
+         var drop = document.getElementById("dropdown_content");
+         if(drop.style.display == "none")
+         drop.style.display = "block"
+         else
+            drop.style.display = "none"
+     }
+     */  
+});
