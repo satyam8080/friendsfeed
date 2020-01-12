@@ -1,10 +1,25 @@
 var change;
+var i;
 $(document).ready(function(){
      $("#new_post").emojioneArea({
          pickerPosition : "bottom",
          tonesStyle : "checkbox",
          /*autocomplete : false*/
      });
+    document.getElementById("1").classList.add("active");
+    
+    /*  var hash;
+
+    for(i=1;i<6;i++)
+        {
+            hash = "#"+i.toString();
+            
+         $(hash).removeClass("active");
+        }
+    */
+    
+    
+    
           
      var count  = 1;
             $("li.nav-item").click(function (e) {

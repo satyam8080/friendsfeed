@@ -161,35 +161,3 @@
     margin-top:2rem;
 }
 
-/*code for left side vertical bar*/
-.left_side_main{
-    background-color:#e4edea;
-    width: 17rem;
-    position: fixed;
-    left: .5rem;
-    top: 3.5rem;
-    display: inline;
-    border-right: 2px solid #c1bebe;
-    height: 91%;
-    text-align: center;
-    padding-right: .8rem;
-}
-.left_side_main a{
-     color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-    border-bottom: 1px solid #c1bebe;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-}
-.left_side_main a:hover{
-    background-color: #c2fed2;
-    cursor: pointer;
-}
-.about_us{
-    position: absolute;
-    z-index: 99;
-    text-align: center;
-    width: 100%;
-}

@@ -1,7 +1,7 @@
 	@include('templates/header')
 	@if (Auth::user() != NULL)
 	<script> 
-		window.location = "http://localhost/friendsfeed/public/home";
+		window.location = " {{URL('home')}} "; 
 	</script>
 	@endif
 
@@ -77,7 +77,7 @@
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 		 </div>
-        <input name="email" class="form-control " placeholder="Email address" type="email">
+        <input name="email" class="form-control " placeholder="Email address" type="email" autofill="false">
     </div> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
@@ -90,7 +90,25 @@
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
         <input class="form-control " placeholder="Repeat password" type="password">
-    </div>                                       
+    </div>     
+        
+        <!--for DOB-->
+         <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+		</div>
+        <input class="form-control " placeholder="dd/mm/yyyy" type="date">
+    </div>  
+        <!--for gender-->
+         <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-calender"></i> </span>
+		</div>
+        
+    </div> 
+        
+        
+        <!--gender end-->
     <div class="form-group">
         <button type="submit" class="btn login_btn signupButton" > Sign up</button>
     </div>                                                
