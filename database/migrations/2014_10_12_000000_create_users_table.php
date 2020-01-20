@@ -16,24 +16,11 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-<<<<<<< HEAD
-          //  $table->string('username');
-=======
             $table->string('username')->default('NULL');
->>>>>>> e95e430db677f49abdffac53408546b0de16117e
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-<<<<<<< HEAD
-            /*$table->string('profileImage');
-            $table->string('profileCover');
-            $table->integer('following')->length(11);
-            $table->integer('followers')->length(11);
-            $table->string('bio');
-            $table->string('country');
-            $table->string('website');*/
-=======
             $table->string('profileImage')->default('NULL');
             $table->string('profileCover')->default('NULL');
             $table->integer('following')->length(11)->default('0');
@@ -41,7 +28,6 @@ class CreateUsersTable extends Migration
             $table->string('bio')->default('NULL');
             $table->string('country')->default('NULL');
             $table->string('website')->default('NULL');
->>>>>>> e95e430db677f49abdffac53408546b0de16117e
             $table->timestamps();
         });
     }

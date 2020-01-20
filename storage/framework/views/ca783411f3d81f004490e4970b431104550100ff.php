@@ -1,4 +1,4 @@
-<?php echo e($lastSpace = strrpos(Auth::user()->name ," ")); ?>
+<?php echo e($lastSpace = strpos(Auth::user()->name ," ")); ?>
 
 
 <?php if($lastSpace == FALSE): ?>

@@ -1,4 +1,9 @@
 	@include('templates/header')
+    @if (Auth::user() == NULL)
+    <script> 
+        window.location = " {{URL('home')}} "; 
+    </script>
+    @endif
 	
 
 
@@ -40,9 +45,19 @@
         <h3 align="center">Please Create Username</h3>
        
         
-        <form action="" method="post">
-        <input type="text" class="userfield"placeholder="E.g JhonDoeKing" required>
-            <b><p class="alert_red">*Not Available*</p></b>
+        <form action=" {{URL('acceptuser')}} " method="POST">
+            {{ csrf_field() }}
+            
+           
+        <input type="text" class="userfield" name="username" value=" {{ $data['username'] }} " required>
+        
+        @if($data['error'] == 'true')
+         <span style="color:red; font-size: 1rem; text-align: center; display: block;" align="center">*Username is Not Available*</span>
+          @endif 
+
+
+             
+
             <button type="submit" class="submit_button">Continue</button>
         
         

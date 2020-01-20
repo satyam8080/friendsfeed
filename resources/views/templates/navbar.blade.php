@@ -1,4 +1,4 @@
-{{ $lastSpace = strrpos(Auth::user()->name ," ") }}
+{{ $lastSpace = strpos(Auth::user()->name ," ") }}
 
 @if($lastSpace == FALSE)
 {{ $userName = Auth::user()->name }}

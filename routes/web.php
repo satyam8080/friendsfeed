@@ -22,13 +22,14 @@ Route::get('/profile',function() {
 	return view('pages/profile');
 });
 
-Route::get('/selectusername',function() {
-	return view('pages/username');
-});
+Route::get('/selectusername','Controller\UserController@getUserName' )->name('selectusername');
+Route::get('/selectusernamedefault','Controller\UserController@createUserNameDefault' );
+Route::post('/acceptuser','Controller\UserController@acceptUser' );
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+ 
 
 

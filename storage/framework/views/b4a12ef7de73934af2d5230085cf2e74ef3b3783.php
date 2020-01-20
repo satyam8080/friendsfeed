@@ -1,4 +1,9 @@
 	<?php echo $__env->make('templates/header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php if(Auth::user() == NULL): ?>
+    <script> 
+        window.location = " <?php echo e(URL('home')); ?> "; 
+    </script>
+    <?php endif; ?>
 	
 
 
@@ -40,9 +45,20 @@
         <h3 align="center">Please Create Username</h3>
        
         
-        <form action="" method="post">
-        <input type="text" class="userfield"placeholder="E.g JhonDoeKing" required>
-            <b><p class="alert_red">*Not Available*</p></b>
+        <form action=" <?php echo e(URL('acceptuser')); ?> " method="POST">
+            <?php echo e(csrf_field()); ?>
+
+            
+           
+        <input type="text" class="userfield" name="username" value=" <?php echo e($data['username']); ?> " required>
+        
+        <?php if($data['error'] == 'true'): ?>
+         <span style="color:red; font-size: 1rem; text-align: center; display: block;" align="center">*Username is Not Available*</span>
+          <?php endif; ?> 
+
+
+             
+
             <button type="submit" class="submit_button">Continue</button>
         
         
