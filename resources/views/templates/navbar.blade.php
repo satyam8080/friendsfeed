@@ -8,6 +8,8 @@
 
 
  <link rel="stylesheet" type="text/css" href="{{asset('asset/css/homecss.css')}} ">
+<link rel="stylesheet" type="text/css" href="{{asset('asset/css/navcss.css')}} ">
+
     <nav class="navbar navbar-expand navbar-light bg-white fixed-top">
         <div class="container">
             <div class="collapse navbar-collapse">
@@ -60,12 +62,23 @@
                     </li>
                 </ul>
                 <form action="" class="form-inline w-100 d-none d-md-block ml-2">
+                    <div>
                     <input type="text" class="form-control form-control-sm rounded-pill search border-0 px-3 w-100" placeholder="Search on friendsfeed">
+                        <div class="search_div  px-3">
+                            <ul class="serch_list">
+                            <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
+                                 <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
+                                 <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
+                                 <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
+                            
+                            </ul>
+                        
+                        </div>
+                    </div>
                 </form>
                 <ul class="navbar-nav d-none d-md-block">
                     <li class="nav-item" id="5">
-                        <a  onclick="window.location.href ='{{URL('profile')}} ';" class="nav-link" style="cursor:pointer;" > <img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 32px; width: 32px; ">
-                            <b style="display:inline; position:absolute; margin-left:.5rem;">  {{$userName}} </b>
+                        <a  onclick="window.location.href ='{{URL('profile')}} ';" class="nav-link" style="cursor:pointer;" > <img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 32px; width: 32px; "><b style="display:inline; position:absolute; margin-left:.5rem;">  {{$userName}} </b>
                         </a>
                     </li>
                 </ul>

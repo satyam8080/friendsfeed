@@ -160,4 +160,8 @@
     margin:auto; 
     margin-top:2rem;
 }
+button:hover,button:focus,button:active,button:visited{
+    border: none;
+    outline: none;
+}
 
