@@ -1,4 +1,8 @@
 	@include('templates/header')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	@if (Auth::user() != NULL)
 	<script> 
 		window.location = " {{URL('home')}} "; 
@@ -19,13 +23,6 @@
    </div>
 <div class="login_div">
 	<p><b> Please enter your details  </b> </p>
-	<!-- <form>
-		<input type="email" name="email" class="login_field" placeholder="email"   required>
-		<input type="password" name="password" class="login_field" placeholder="password" required>
-		<input type="submit" name="submit" id="submit">
-
-	</form> -->
-
 	<form method="POST" action=" {{ URL('login') }} "> 
 		{{ csrf_field() }}
 
@@ -33,13 +30,13 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="far fa-envelope"></i></span>
 							</div>
-							<input type="text" name="email" class="form-control input_user" value="" placeholder="Email">
+							<input type="text" name="email" class="form-control input_user" value="" placeholder="Email" required>
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="password" class="form-control input_pass" value="" placeholder="Password">
+							<input type="password" name="password" class="form-control input_pass" value="" placeholder="Password" required>
 						</div>
 						<div class="form-group">
 							<div class="custom-control custom-checkbox">
@@ -64,32 +61,32 @@
 		<!-- code from bootsnip -->
 			<p><b> Please enter your details to resister </b> </p>
 
-	<form method="POST" action=" {{ URL('register') }} ">
+	<form method="POST" action=" {{ URL('register') }} " autocomplete="off">
 		{{ csrf_field() }}
 		
 	<div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="name" class="form-control " placeholder="Full name" type="text">
+        <input name="name" class="form-control " placeholder="Full name" type="text" required>
     </div> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 		 </div>
-        <input name="email" class="form-control " placeholder="Email address" type="email" autofill="false">
+        <input name="email" class="form-control" placeholder="Email address" type="email" id="email" required>
     </div> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-        <input name="password" class="form-control " placeholder="Create password" type="password">
+        <input name="password" class="form-control" placeholder="Create password" type="password" id="pass" required>
     </div> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-        <input class="form-control " placeholder="Repeat password" type="password">
+        <input class="form-control " placeholder="Repeat password" type="password" required>
     </div>     
         
         <!--for DOB-->
@@ -97,15 +94,18 @@
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
 		</div>
-        <input class="form-control " placeholder="dd/mm/yyyy" type="date">
+        <input class="form-control" placeholder="dd/mm/yyyy" type="date" id="date" required>
     </div>  
         <!--for gender-->
          <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-calender"></i> </span>
+             <div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-venus-mars"></i> </span>
 		</div>
-        
-    </div> 
+             <span class="radio_btn"><input type="radio" name="gender" value="male" required>Male</span>
+             <span class="radio_btn"><input type="radio" name="gender" value="female" required>Female</span>
+             <span class="radio_btn"><input type="radio" name="gender" value="other" required>Other</span>
+             
+        </div> 
         
         
         <!--gender end-->
@@ -114,7 +114,7 @@
     </div>                                                
 </form>
 
-	<div style="padding-top: 1rem;">
+	<div style="padding-top: 0rem;">
       				 <p style="display: inline;"><b>Already have an account?</b></p>
       				 <a style="cursor: pointer;color: blue; display: inline;" onclick="loginbox()">Login in</a>
       				 </div> 

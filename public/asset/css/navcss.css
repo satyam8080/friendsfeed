@@ -1,0 +1,32 @@
+.search_div{
+    position:absolute; 
+    width:28rem;
+    text-align: left;
+    z-index:9999;
+    background-color: white;
+    border: 1px solid #efefef;
+    border-radius: 1rem;
+    border-top-right-radius: 0rem;
+    margin-top: .5rem;
+    display: none;
+}
+input[type=text]:focus ~ .search_div{
+    display: block;
+}
+.serch_list li{
+    padding: .5rem;
+    color: #888888;
+    list-style-type: none;
+    left: 0;
+}
+ul {
+       list-style-type: none;
+       display: contents;
+   }
+
+ul > li {
+
+        padding: 0;
+        margin: 0; 
+        text-align: left;
+   }

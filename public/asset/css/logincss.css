@@ -23,7 +23,7 @@ text-align: center;
 	left:35%;
 	z-index: 999;
 	width: 30%;
-	height: 70%;
+	height: 75%;
     background-color: white;		
 }
 .button_div{
@@ -72,7 +72,7 @@ text-align: center;
 .signup_div{ /*div for signup*/
 	text-align: center;
 	display: none;
-	padding-top: 6rem;
+	padding-top: 4rem;
 	padding-left: .5rem;
 	padding-right: .5rem;
 }
@@ -83,6 +83,16 @@ text-align: center;
 .signupButton:focus{
  outline: none !important;
 
+}
+.radio_btn{
+    margin-left: 2rem;
+}
+input[type=radio]:hover{
+    cursor: pointer;
+}
+input[type=radio]:checked+span{
+    background-color: #71E35F;
+    border-color: aquamarine;
 }
 
 
