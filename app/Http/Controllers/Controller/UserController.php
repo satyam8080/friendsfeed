@@ -133,5 +133,36 @@ class UserController extends Controller
     	}
     }
 
+    /*public function searchResult($search)
+    {
+        if (!empty($search)) {
+            $search = $search.'%';
+            $result = DB::select('select `id`,`username`,`name`,`profileImage` from users where `username` like :search or `name` like :search ',['search'=> $search]);
+            return $result;
+        }
+    }*/
+    
+    public function search(Request $request)
+    {
+        if($request->ajax())
+    {
+    $output="";
+    $products=DB::table('users')->where('username','LIKE','%'.$request->search."%" && 'name','LIKE','%'.$request->search."%")->get();
+    if($products)
+    {
+        foreach ($products as $key => $product) {
+        $output.='<tr>'.
+        '<td>'.$product->id.'</td>'.
+        '<td>'.$product->name.'</td>'.
+        '<td>'.$product->username.'</td>'.
+        '<td>'.$product->profileImage.'</td>'.
+        '</tr>';
+    }
+    return Response($output);
+   }
+}
+}
+    
+
     
 }

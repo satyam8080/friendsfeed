@@ -1,0 +1,4 @@
+[2020-01-22 12:16:21] local.ERROR: Maximum execution time of 30 seconds exceeded {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 30 seconds exceeded at D:\\Projects\\xampp\\htdocs\\friendsfeed\\vendor\\laravel\\framework\\src\\Illuminate\\Contracts\\Auth\\Guard.php:5)
+[stacktrace]
+#0 {main}
+"} 

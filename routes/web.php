@@ -25,6 +25,7 @@ Route::get('/profile',function() {
 Route::get('/selectusername','Controller\UserController@getUserName' )->name('selectusername');
 Route::get('/selectusernamedefault','Controller\UserController@createUserNameDefault' );
 Route::post('/acceptuser','Controller\UserController@acceptUser' );
+Route::get('/search','Controller\UserController@search' );
 
 
 Auth::routes();
