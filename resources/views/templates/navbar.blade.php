@@ -63,9 +63,10 @@
                 </ul>
                 <form action="" class="form-inline w-100 d-none d-md-block ml-2">
                     <div>
-                    <input type="text" class="form-control form-control-sm rounded-pill search border-0 px-3 w-100" placeholder="Search on friendsfeed">
+                    <input type="text" id="search" class="form-control form-control-sm rounded-pill search border-0 px-3 w-100" placeholder="Search on friendsfeed">
+                        <!--code for search div-->
                         <div class="search_div  px-3">
-                            <ul class="serch_list">
+                            <ul class="serch_list" id="search_ul">
                             <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
                                  <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
                                  <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
@@ -74,6 +75,7 @@
                             </ul>
                         
                         </div>
+                        <!--serach div end-->
                     </div>
                 </form>
                 <ul class="navbar-nav d-none d-md-block">
@@ -100,3 +102,6 @@
             </div>
         </div>
     </nav>
+ <script src="{{asset('asset\js\search.js')}}">
+
+</script>
