@@ -8,7 +8,7 @@
 <?php echo e($userName = substr(Auth::user()->name ,0,$lastSpace)); ?>
 
 <?php endif; ?>
-
+ 
 
  <link rel="stylesheet" type="text/css" href="<?php echo e(asset('asset/css/homecss.css')); ?> ">
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('asset/css/navcss.css')); ?> ">
@@ -66,9 +66,10 @@
                 </ul>
                 <form action="" class="form-inline w-100 d-none d-md-block ml-2">
                     <div>
-                    <input type="text" class="form-control form-control-sm rounded-pill search border-0 px-3 w-100" placeholder="Search on friendsfeed">
+                    <input type="text" id="search" class="form-control form-control-sm rounded-pill search border-0 px-3 w-100" placeholder="Search on friendsfeed">
+
                         <div class="search_div  px-3">
-                            <ul class="serch_list">
+                            <ul class="serch_list" id="search_ul">
                             <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
                                  <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
                                  <li><img src="https://vignette.wikia.nocookie.net/the-sun-vanished/images/5/5d/Twitter-avi-gender-balanced-figure.png/revision/latest?cb=20180713020754" alt="" class="img-fluid rounded-circle" style="height: 26px; width: 26px; margin-right:1rem;"> hello</li>
@@ -77,6 +78,7 @@
                             </ul>
                         
                         </div>
+                        <!--serach div end-->
                     </div>
                 </form>
                 <ul class="navbar-nav d-none d-md-block">
@@ -104,4 +106,7 @@
             </div>
         </div>
     </nav>
+ <script src="<?php echo e(asset('asset\js\search.js')); ?>">
+
+</script>
 <?php /**PATH D:\Projects\xampp\htdocs\friendsfeed\resources\views/templates/navbar.blade.php ENDPATH**/ ?>

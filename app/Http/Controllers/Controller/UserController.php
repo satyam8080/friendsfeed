@@ -142,7 +142,7 @@ class UserController extends Controller
         }
     }*/
     
-    public function search(Request $request)
+    /*public function search(Request $request)
     {
         if($request->ajax())
     {
@@ -161,6 +161,59 @@ class UserController extends Controller
     return Response($output);
    }
 }
+}*/
+
+public function search(Request $request)
+{
+    if ($request->ajax()) {
+        $output='';
+        $query = $request->get('query');
+        if ($query != '') {
+              $data = DB::table('users')->where('username','LIKE','%'.$query.'%')->where('name','LIKE','%'.$query.'%' )->get();
+        } else {
+            $data = 'error';
+        }
+        $total_row = $data->count();
+
+        if ($total_row > 0) {
+            foreach ($data as $row ) {
+                 $output.='<tr>'.
+        '<td>'.$row->id.'</td>'.
+        '<td>'.$row->name.'</td>'.
+        '<td>'.$row->username.'</td>'.
+        '<td>'.$row->profileImage.'</td>'.
+        '</tr>';
+            }
+        } else {
+            $output = '<tr>'.
+            '<td>'.'No result found'.'</td>'.
+            '</tr>';
+        }
+
+        $data = array(
+            'table_data' => $output,
+            'total_data' => $total_data
+        );
+        echo json_encode($data);
+    }
+}
+
+public function qq(Request $request)
+{   /*$query='sa';
+                 $data = DB::table('users')->where('username','LIKE','%'.$query.'%')->where('name','LIKE','%'.$query.'%' )->get();
+                       // $check = DB::select('select id,name,username,profileImage from users where username =  :username ',['username'=> $username]);
+                    
+                 dd($data);*/
+                 if ($request->ajax()) {
+        /*$output='';
+        $query = $request->get('query');
+        dd($query);
+        echo "true";*/
+         echo json_encode('hello');
+    }
+    else {
+        echo "false";
+    }
 }
     
 
