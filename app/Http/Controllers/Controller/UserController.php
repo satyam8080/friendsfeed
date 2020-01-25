@@ -133,9 +133,39 @@ class UserController extends Controller
     	}
     }
 
+    /*public function searchResult($search)
+    {
+        if (!empty($search)) {
+            $search = $search.'%';
+            $result = DB::select('select `id`,`username`,`name`,`profileImage` from users where `username` like :search or `name` like :search ',['search'=> $search]);
+            return $result;
+        }
+    }*/
+    
+    /*public function search(Request $request)
+    {
+        if($request->ajax())
+    {
+    $output="";
+            $search = $request->search;
+    $products=DB::select('select `id`,`username`,`name`,`profileImage` from users where `username` like :search or `name` like :search ',['search'=> $search]);
+            
+    if($products)
+    {
+        foreach ($products as $key => $product) {
+        $output.=''.
+        '<li>'.$product->id.'</li>'.
+        '<li>'.$product->name.'</li>'.
+        '<li>'.$product->username.'</li>'.
+        '<li>'.$product->profileImage.'</li>';
+    }
+    return Response($output);
+   }
+}
+}*/
     
     public function search(Request $request)
-    {
+{
     if ($request->ajax()) {
         $output='';
         $query = $request->get('search');
@@ -149,6 +179,22 @@ class UserController extends Controller
         if ($total_row > 0) {
             foreach ($data as $row ) {
                 $output.='<li><img src="'.$row->profileImage.'" alt="" class="img-fluid rounded-circle given" style="height : 26px; width:26px;margin-right:1rem;">'.$row->name.'</li>';
+                
+                
+                /* $output.= '<li><img src="';
+                 $output.=$row->profileImage;
+                 $output.='" alt='.'""';
+                 $output.='class="';
+                 $output.='img-fluid rounded-circle" style=';
+                 $output.='"height : 26px; width:26px;margin-right:1rem;';
+                 $output.='">';
+                 $output.=$row->name;
+                 $output.='</li>';*/
+                     
+                     
+       /* '<td>'.$row->username.'</td>'.
+        '<td>'.$row->profileImage.'</td>'.
+        '</tr>'*/
 
             }
         } else {
