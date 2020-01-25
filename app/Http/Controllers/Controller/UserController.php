@@ -133,43 +133,14 @@ class UserController extends Controller
     	}
     }
 
-    /*public function searchResult($search)
-    {
-        if (!empty($search)) {
-            $search = $search.'%';
-            $result = DB::select('select `id`,`username`,`name`,`profileImage` from users where `username` like :search or `name` like :search ',['search'=> $search]);
-            return $result;
-        }
-    }*/
     
-    /*public function search(Request $request)
+    public function search(Request $request)
     {
-        if($request->ajax())
-    {
-    $output="";
-    $products=DB::table('users')->where('username','LIKE','%'.$request->search."%" && 'name','LIKE','%'.$request->search."%")->get();
-    if($products)
-    {
-        foreach ($products as $key => $product) {
-        $output.='<tr>'.
-        '<td>'.$product->id.'</td>'.
-        '<td>'.$product->name.'</td>'.
-        '<td>'.$product->username.'</td>'.
-        '<td>'.$product->profileImage.'</td>'.
-        '</tr>';
-    }
-    return Response($output);
-   }
-}
-}*/
-
-public function search(Request $request)
-{
     if ($request->ajax()) {
         $output='';
-        $query = $request->get('query');
+        $query = $request->get('search');
         if ($query != '') {
-              $data = DB::table('users')->where('username','LIKE','%'.$query.'%')->where('name','LIKE','%'.$query.'%' )->get();
+              $data = DB::table('users')->where('name','LIKE','%'.$query.'%' )->get();
         } else {
             $data = 'error';
         }
@@ -177,45 +148,24 @@ public function search(Request $request)
 
         if ($total_row > 0) {
             foreach ($data as $row ) {
-                 $output.='<tr>'.
-        '<td>'.$row->id.'</td>'.
-        '<td>'.$row->name.'</td>'.
-        '<td>'.$row->username.'</td>'.
-        '<td>'.$row->profileImage.'</td>'.
-        '</tr>';
+                $output.='<li><img src="'.$row->profileImage.'" alt="" class="img-fluid rounded-circle given" style="height : 26px; width:26px;margin-right:1rem;">'.$row->name.'</li>';
+
             }
         } else {
-            $output = '<tr>'.
-            '<td>'.'No result found'.'</td>'.
-            '</tr>';
+            $output = '<li>No Result Found</li>';
         }
 
         $data = array(
             'table_data' => $output,
-            'total_data' => $total_data
+            'total_data' => $total_row
         );
-        echo json_encode($data);
+       echo $output;
+        // echo json_encode($output);
     }
 }
 
-public function qq(Request $request)
-{   /*$query='sa';
-                 $data = DB::table('users')->where('username','LIKE','%'.$query.'%')->where('name','LIKE','%'.$query.'%' )->get();
-                       // $check = DB::select('select id,name,username,profileImage from users where username =  :username ',['username'=> $username]);
-                    
-                 dd($data);*/
-                 if ($request->ajax()) {
-        /*$output='';
-        $query = $request->get('query');
-        dd($query);
-        echo "true";*/
-         echo json_encode('hello');
-    }
-    else {
-        echo "false";
-    }
-}
-    
 
     
 }
+
+
