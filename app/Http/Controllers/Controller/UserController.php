@@ -142,27 +142,76 @@ class UserController extends Controller
         }
     }*/
     
-    public function search(Request $request)
+    /*public function search(Request $request)
     {
         if($request->ajax())
     {
     $output="";
-    $products=DB::table('users')->where('username','LIKE','%'.$request->search."%" && 'name','LIKE','%'.$request->search."%")->get();
+            $search = $request->search;
+    $products=DB::select('select `id`,`username`,`name`,`profileImage` from users where `username` like :search or `name` like :search ',['search'=> $search]);
+            
     if($products)
     {
         foreach ($products as $key => $product) {
-        $output.='<tr>'.
-        '<td>'.$product->id.'</td>'.
-        '<td>'.$product->name.'</td>'.
-        '<td>'.$product->username.'</td>'.
-        '<td>'.$product->profileImage.'</td>'.
-        '</tr>';
+        $output.=''.
+        '<li>'.$product->id.'</li>'.
+        '<li>'.$product->name.'</li>'.
+        '<li>'.$product->username.'</li>'.
+        '<li>'.$product->profileImage.'</li>';
     }
     return Response($output);
    }
 }
-}
+}*/
     
+    public function search(Request $request)
+{
+    if ($request->ajax()) {
+        $output='';
+        $query = $request->get('search');
+        if ($query != '') {
+              $data = DB::table('users')->where('name','LIKE','%'.$query.'%' )->get();
+        } else {
+            $data = 'error';
+        }
+        $total_row = $data->count();
+
+        if ($total_row > 0) {
+            foreach ($data as $row ) {
+                $output.='<li><img src="'.$row->profileImage.'" alt="" class="img-fluid rounded-circle given" style="height : 26px; width:26px;margin-right:1rem;">'.$row->name.'</li>';
+                
+                
+                /* $output.= '<li><img src="';
+                 $output.=$row->profileImage;
+                 $output.='" alt='.'""';
+                 $output.='class="';
+                 $output.='img-fluid rounded-circle" style=';
+                 $output.='"height : 26px; width:26px;margin-right:1rem;';
+                 $output.='">';
+                 $output.=$row->name;
+                 $output.='</li>';*/
+                     
+                     
+       /* '<td>'.$row->username.'</td>'.
+        '<td>'.$row->profileImage.'</td>'.
+        '</tr>'*/
+
+            }
+        } else {
+            $output = '<li>No Result Found</li>';
+        }
+
+        $data = array(
+            'table_data' => $output,
+            'total_data' => $total_row
+        );
+       echo $output;
+        // echo json_encode($output);
+    }
+}
+
 
     
 }
+
+
