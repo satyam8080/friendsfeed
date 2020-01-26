@@ -21,13 +21,10 @@ function deleteChild(){
 $("#search").keyup(function(){
     deleteChild();
     var data = $(this).val();
-    if(data==""){
+    if(data!=""){
         deleteChild();
-    }
-    data = escapeHtml(data);
-    console.log(data);
-   
-    $.ajax({
+          data = escapeHtml(data); 
+  $.ajax({
         type:"GET",
         cache:false,
         url:"http://localhost/friendsfeed/public/search",
@@ -52,6 +49,7 @@ $("#search").keyup(function(){
         
     })
     $.ajaxSetup({headers:{'csrftoken':'{{csrf_token()}}'}});
+    }
     
     
 })
