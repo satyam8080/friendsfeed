@@ -178,7 +178,7 @@ class UserController extends Controller
 
         if ($total_row > 0) {
             foreach ($data as $row ) {
-                $output.='<li><img src="'.$row->profileImage.'" alt="" class="img-fluid rounded-circle given" style="height : 26px; width:26px;margin-right:1rem;">'.$row->name.'</li>';
+                $output.='<li data-value="'.$row->name.'"  ><img src="'.$row->profileImage.'" alt="" class="img-fluid rounded-circle given" style="height : 26px; width:26px;margin-right:1rem;">'.$row->name.'</li>';
                 
                 
                 /* $output.= '<li><img src="';
@@ -195,6 +195,7 @@ class UserController extends Controller
        /* '<td>'.$row->username.'</td>'.
         '<td>'.$row->profileImage.'</td>'.
         '</tr>'*/
+               // $username = $row->name;
 
             }
         } else {
