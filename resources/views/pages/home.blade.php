@@ -20,7 +20,8 @@
 
 <!-- Modal -->
 
-     <form accept-charset="UTF-8" action="javascript:alert('submitted');" method="POST" id="form_post_id" enctype="multipart/form-data">
+     <form method="POST" action="{{ URL('post') }}" accept-charset="UTF-8" id="form_post_id" enctype="multipart/form-data">
+      {{ csrf_field() }}
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" style="z-index  : 9999 !important;" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -40,7 +41,7 @@
            
 
                 <textarea class="span4" style="resize : none; " id="new_post" name="new_post"
-                placeholder="What's in Mind ?(use 'tab' to add emoji faster)" rows="5" name="post_area"></textarea>
+                placeholder="What's in Mind ?(use 'tab' to add emoji faster)" rows="5" ></textarea>
 
 
 

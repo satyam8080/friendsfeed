@@ -14,16 +14,16 @@ class PostController extends Controller
 	{
 		$userid = Auth::user()->id;
 		return $userid;
-	}
+	} 
 
 
     public function store(Request $request)
     {
     	//Post validation
-    	$this->validate($request,[
+    	/*$this->validate($request,[
     		'post' 		 => 'required',
     		'post_image' => 'image|nullable|max:51200' 
-    	]);
+    	]); */
 
     	$userid = $this->getUserId();
 
@@ -45,11 +45,11 @@ class PostController extends Controller
 
     	// Create post
     	$post = new Post;
-    	$post->post = $request->input('post');
+    	$post->post = $request->input('new_post');
     	$post->post_image = $filenameToStore;
     	$post->user_id  = $userid;
     	$post->save();
 
-    	return redirect('/profile'); 
+    	 return redirect('/profile');
     }
 }

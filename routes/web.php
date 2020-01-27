@@ -18,15 +18,16 @@ Route::get('/', function () {
 Route::get('/test',function() {
 	return view('index');
 });
-Route::get('/profile',function() {
+/*Route::get('/profile',function() { 
 	return view('pages/profile');
-});
+});*/
 
 Route::get('/selectusername','Controller\UserController@getUserName' )->name('selectusername');
 Route::get('/selectusernamedefault','Controller\UserController@createUserNameDefault' );
 Route::post('/acceptuser','Controller\UserController@acceptUser' );
 Route::post('/post','Controller\PostController@store' );
 Route::get('/search','Controller\UserController@search' )->name('search');
+Route::get('/profile','Controller\UserController@self_post' );
 
 
 Auth::routes();

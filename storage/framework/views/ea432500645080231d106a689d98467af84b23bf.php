@@ -44,7 +44,53 @@
     <!--about div end-->
     <!--posts div start-->
     <div class="posts_div" id="post_div">
-      <?php echo $__env->make('templates.card', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+      <!-- -------------------------------------------------------------------------------------------------------------------- -->
+      <script type="text/javascript" src="<?php echo e(asset('asset/js/cardjs.js')); ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('asset/css/cardcss.css')); ?>">
+
+      <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+<div class="card" style="width: 37rem;  margin:auto; margin-top : 2rem;">
+    <div class="card-header" style="padding-bottom:0rem !important;">
+
+        <img src="<?php echo e(asset('asset/images/raj.jpg')); ?>" alt="" class="float-left rounded-circle" style="height: 32px; width: 32px;">
+
+  
+        <div style="height:100%; float:left; padding-left:1rem;">
+  
+    <h5 class="card-title" style=" line-height:1rem !important;"> <?php echo e(Auth::user()->name); ?> </h5>
+            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href=""><?php echo e('@'.Auth::user()->username); ?></a></p>
+        </div>
+        
+        <div style="float:right;">
+    <button style="background:none;border:none;" id="dot_btn-<?php echo e($post->post_id); ?>" onclick="changedot(this.id); return false;"><!--generate id at runn time-->
+         <i class="fas fa-ellipsis-v" style="color:#afafaf;"></i>
+        </button>
+            <div class="dot_div display" id="dot_div-<?php echo e($post->post_id); ?>">
+            <button>Report</button>
+                <button>Share</button>
+            </div>
+        </div>
+        
+    </div>
+  <img src="/friendsfeed/public/storage/users/images/<?php echo e($post->post_image); ?>" class="card-img-top"  alt="">
+  <div class="card-body">
+       <h5 class="card-title"></h5>
+    <p class="card-text"><b> <?php echo e(Auth::user()->username); ?>: </b> <?php echo e($post->post); ?> <!-- You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size --></p>
+
+    
+  </div>
+    <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
+            <a href="javascript:void(0)" id="changenow-<?php echo e($post->post_id); ?>" onclick="change(this.id);return false;" class="btn icon_style"><img  src="<?php echo e(asset('asset/images/heart.png')); ?>" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
+       
+          <a href="javascript:void(0)" class="btn" ><img src="<?php echo e(asset('asset/images/comment2.png')); ?>" style="height : 1.5rem;width:1.5rem;">
+        <span style="color:#999;">10</span>
+        </a>
+    
+    </div>
+</div>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+      <!-- -------------------------------------------------------------------------------------------------------------------- -->
     
     </div>
     <!--post div end-->
