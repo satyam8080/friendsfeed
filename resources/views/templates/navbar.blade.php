@@ -93,6 +93,7 @@
                             {{ csrf_field() }}
      <a href="#" name="logout" onclick="this.parentNode.submit(); return false"><i class="fas fa-sign-out-alt fa-lg"></i>Log Out</a>
                           </form>
+    <a href="javascript:void(0)"> <i class="fas fa-cog"></i>  Settings</a>
     <a href="javascript:void(0)"><i class="fa fa-lock fa-lg"></i>  Privacy</a>
     <a href="#about_us"><i class="fa fa-user fa-lg" aria-hidden="true"></i> About Us</a>
   </div>

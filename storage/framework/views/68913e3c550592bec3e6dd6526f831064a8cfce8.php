@@ -19,7 +19,10 @@
 </button>
 
 <!-- Modal -->
-     <form accept-charset="UTF-8" action="" method="POST">
+     <form action="<?php echo e(URL('post')); ?>" accept-charset="UTF-8"  method="POST" enctype="multipart/form-data" id="form_post_id">
+       <?php echo e(csrf_field()); ?>
+
+
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" style="z-index  : 9999 !important;" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -36,7 +39,7 @@
 	<div class="row">
 		<div class="span4 well" style="padding-bottom:0; width : 28rem !important">
            
-                <textarea class="span4" style="resize : none; " id="new_post" name="new_post"
+                <textarea class="span4" style="resize : none; " id="new_post" name="post"
                 placeholder="What's in Mind ?(use 'tab' to add emoji faster)" rows="5"></textarea>
 
 
@@ -49,13 +52,13 @@
                
       </div>
       <div class="modal-footer" style="background-color:#e4edea !important" >
-          <label for="image_post" id="image_post_label" class="mr-auto"> <img  src="<?php echo e(asset('asset/images/photos.png')); ?>" alt="submit" id="image_post_png"></label>
+          <label for="image_post" id="image_post_label" class="mr-auto" > <img  src="<?php echo e(asset('asset/images/photos.png')); ?>" alt="submit" id="image_post_png"></label>
                 <input type="file" name="image" id="image_post" class="att_icon">
            <label for="video_post" id="image_post_label" class="mr-auto"> <img  src="<?php echo e(asset('asset/images/videos.png')); ?>" alt="submit" id="image_post_png"></label>
-                <input type="file" name="image" id="video_post" class="att_icon">
+                <input type="file" name="video" id="video_post" class="att_icon">
            <label for="feeling_post" id="image_post_label" class="mr-auto"> <img  src="<?php echo e(asset('asset/images/feelings.png')); ?>" alt="submit" id="image_post_png"></label>
-                <input type="file" name="image" id="feeling_post" class="att_icon">
-        <button type="button" class="btn btn-primary post_button">Post</button>
+                <input type="file" name="emoji" id="feeling_post" class="att_icon">
+        <button type="submit" class="btn btn-primary post_button">Post</button>
       </div>
     </div>
   </div>
