@@ -17,8 +17,48 @@ var change;
     return this;
   };
      change =  function(todo){
-         var n ="#"+ todo+" > img"
-          $(n).toggleAttrVal("src", "https://image.flaticon.com/icons/svg/148/148836.svg", "https://image.flaticon.com/icons/svg/1077/1077035.svg");
+         var def = "http://localhost/friendsfeed/public/asset/images/heart.png";
+        var like = "http://localhost/friendsfeed/public/asset/images/like.svg";
+         var dislike = "http://localhost/friendsfeed/public/asset/images/dislike.svg";
+          var n ="#"+ todo+" > img";
+         todo = todo.slice(10);
+         todo = parseInt(todo);
+            var img = $(n).attr("src");
+         if(img == dislike || img == def ){
+             $.ajax({
+        type:"GET",
+        cache:false,
+        url:"http://localhost/friendsfeed/public/likes",
+        data:{'post_id':todo},
+        success:function(myData){
+      
+            }    
+    })
+    $.ajaxSetup({headers:{'csrftoken':'{{csrf_token()}}'}});
+             
+         }
+         else{
+             alert("like");
+              $.ajax({
+        type:"GET",
+        cache:false,
+        url:"http://localhost/friendsfeed/public/dislike",
+        data:{'post_id':todo},
+        success:function(myData){
+      
+            }    
+    })
+    $.ajaxSetup({headers:{'csrftoken':'{{csrf_token()}}'}});
+         }
+         
+
+        
+          $(n).toggleAttrVal("src", like, dislike);
+         
+      
+         
+         
+         
      }
      $("#profile_edit_btn").click(function(){
          $( "#profile_edit_btn +  div").toggleClass("display");
