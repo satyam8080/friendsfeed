@@ -29,8 +29,14 @@ Route::post('/post','Controller\PostController@store' );
 Route::get('/search','Controller\UserController@search' )->name('search');
 Route::get('/profile','Controller\UserController@self_post' );
 
+
 Route::get('/likes', 'Controller\PostController@likes');
 Route::get('/dislike', 'Controller\PostController@dislike');
+
+Route::get('/searchadv', function () {
+    return view('pages/search');
+});
+
 
 
 Auth::routes();
