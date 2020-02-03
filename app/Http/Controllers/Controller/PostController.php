@@ -64,7 +64,8 @@ class PostController extends Controller
              $query = DB::update('update post set likes_count = likes_count+1 where post_id = ?',[$post_id] );  // return number of row affected
 
              if ($query) {
-                 return "true";
+                $count = DB::select('select likes_count,comments_count from post where post_id = :post_id',['post_id'=> $post_id]);
+                 return $count;
              } else {
                 return "false";
              }
@@ -84,7 +85,8 @@ class PostController extends Controller
             $query = DB::update('update post set likes_count = likes_count-1 where post_id = ?',[$post_id] );  // return number of row affected
 
             if ($query) {
-                 return "true";
+                  $count = DB::select('select likes_count,comments_count from post where post_id = :post_id',['post_id'=> $post_id]);
+                 return $count;
              } else {
                 return "false";
              }
@@ -92,4 +94,4 @@ class PostController extends Controller
             return "false";
          } 
     }
-}
+} 

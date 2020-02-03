@@ -45,7 +45,7 @@
     </div>
     <!--about div end-->
     <!--posts div start-->
-    <div class="posts_div" id="post_div">
+    <div class="posts_div" id="post_div"> 
       <!-- -------------------------------------------------------------------------------------------------------------------- -->
 
       @foreach($data as $post)

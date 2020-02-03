@@ -164,17 +164,30 @@ class UserController extends Controller
     }
 }
 
+    public function searchadv($item)
+    {
+        $search = DB::table('users')->where('name','LIKE','%'.$item.'%')->get();
+        $total_row = $search->count();
+        if ($total_row > 0) {
+            return view('pages/search')->withData($search);
+        } else {
+            $search = "false";
+            return view('pages/search')->withData($search);
+        }
+    }
+
     public function self_post()
     {
         $user_id = $this->getUserId();
         $post = DB::select('select * from post where user_id = :user_id',['user_id'=> $user_id] );
-       // $post = DB::table('post')->where('user_id', $user_id)->value('post');
-       // $data['post'] = $post;
+        $total_row = 
 
         return view('pages/profile')->withData($post);
         //return view('pages/profile',['data'=>$post]);
 
             }
+
+
 
 
     
