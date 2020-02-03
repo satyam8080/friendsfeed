@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use App\Post;
+use App\Likes;
 
 class PostController extends Controller
 {
@@ -51,5 +52,44 @@ class PostController extends Controller
     	$post->save();
 
     	 return redirect('/profile');
+    }
+
+    public function likes($post_id)
+    {
+        $userid = $this->getUserId();
+        $post_id = $post_id;
+        $like=DB::insert('insert into likes (likeBy, likeOn) values (?, ?)', [$userid, $post_id]);  // Return True on success
+
+        if ($like) {
+             $query = DB::update('update post set likes_count = likes_count+1 where post_id = ?',[$post_id] );  // return number of row affected
+
+             if ($query) {
+                 return "true";
+             } else {
+                return "false";
+             }
+         } else {
+            return "false";
+         } 
+        
+    }
+
+    public function dislike($post_id)
+    {
+        $userid = $this->getUserId();
+        $post_id = $post_id;
+        $dislike = DB::delete('delete from likes where likeOn = ?',[$post_id]);
+        
+        if ($dislike) {
+            $query = DB::update('update post set likes_count = likes_count-1 where post_id = ?',[$post_id] );  // return number of row affected
+
+            if ($query) {
+                 return "true";
+             } else {
+                return "false";
+             }
+        } else {
+            return "false";
+         } 
     }
 }

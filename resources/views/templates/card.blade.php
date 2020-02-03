@@ -8,7 +8,7 @@
 
   
         <div style="height:100%; float:left; padding-left:1rem;">
- 
+  
     <h5 class="card-title" style=" line-height:1rem !important;"> {{ Auth::user()->name }} </h5>
             <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href="">{{  '@'.Auth::user()->username }}</a></p>
         </div>
