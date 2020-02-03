@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('asset/css/cardcss.css')); ?>">
 
 <div class="card" style="width: 37rem;  margin:auto; margin-top : 2rem;">
+    
     <div class="card-header" style="padding-bottom:0rem !important;">
 
         <img src="<?php echo e(asset('asset/images/raj.jpg')); ?>" alt="" class="float-left rounded-circle" style="height: 32px; width: 32px;">

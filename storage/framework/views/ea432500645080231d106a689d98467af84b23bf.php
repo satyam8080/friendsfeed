@@ -3,6 +3,8 @@
 
 
 <link rel="stylesheet" href="<?php echo e(asset('asset/css/profile.css')); ?>">
+   <script type="text/javascript" src="<?php echo e(asset('asset/js/cardjs.js')); ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('asset/css/cardcss.css')); ?>">
 <script type="text/javascript" src="<?php echo e(asset('asset/js/profile.js')); ?>">
 </script>
 <script
@@ -45,8 +47,6 @@
     <!--posts div start-->
     <div class="posts_div" id="post_div">
       <!-- -------------------------------------------------------------------------------------------------------------------- -->
-      <script type="text/javascript" src="<?php echo e(asset('asset/js/cardjs.js')); ?>"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo e(asset('asset/css/cardcss.css')); ?>">
 
       <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
@@ -66,9 +66,10 @@
     <button style="background:none;border:none;" id="dot_btn-<?php echo e($post->post_id); ?>" onclick="changedot(this.id); return false;"><!--generate id at runn time-->
          <i class="fas fa-ellipsis-v" style="color:#afafaf;"></i>
         </button>
-            <div class="dot_div display" id="dot_div-<?php echo e($post->post_id); ?>">
-            <button>Report</button>
-                <button>Share</button>
+            <div class="dot_div display" id="dot_div">
+            <button onclick="javascript:alert('reported')"><i class="far fa-flag"></i> Report</button>
+                <button><i class="fas fa-share"></i> Share</button>
+                <button><i class="fa fa-trash"></i> Delete</button>
             </div>
         </div>
         
