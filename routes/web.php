@@ -33,9 +33,11 @@ Route::get('/profile','Controller\UserController@self_post' );
 Route::get('/likes', 'Controller\PostController@likes');
 Route::get('/dislike', 'Controller\PostController@dislike');
 
-Route::get('/searchadv', function () {
+/*Route::get('/searchadv', function () {
     return view('pages/search');
-});
+});*/
+
+Route::get('/searchadv','Controller\UserController@searchadv');
 
 
 

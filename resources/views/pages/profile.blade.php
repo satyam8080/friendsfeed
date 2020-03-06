@@ -82,10 +82,10 @@
     
   </div>
     <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
-            <a href="javascript:void(0)" id="changenow-{{ $post->post_id }}" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
+            <a href="javascript:void(0)" id="changenow-{{ $post->post_id }}" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;"> {{$post->likes_count}} </span></a>
        
           <a href="javascript:void(0)" class="btn" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
-        <span style="color:#999;">10</span>
+        <span style="color:#999;"> {{$post->comments_count}} </span>
         </a>
     
     </div>

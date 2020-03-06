@@ -63,7 +63,7 @@
                 </ul>
                 <form action=" {{URL('searchadv')}} " method="GET" class="form-inline w-100 d-none d-md-block ml-2" autocomplete="off">
                     <div>
-                    <input type="text" id="search" class="form-control form-control-sm rounded-pill search border-0 px-3 w-100" placeholder="Search on friendsfeed" autocomplete="off" >
+                    <input type="text" id="search" name="search" class="form-control form-control-sm rounded-pill search border-0 px-3 w-100" placeholder="Search on friendsfeed" autocomplete="off" >
 
                         <div class="search_div  px-3">
                             <ul class="serch_list" id="search_ul">

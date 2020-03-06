@@ -45,7 +45,7 @@
     </div>
     <!--about div end-->
     <!--posts div start-->
-    <div class="posts_div" id="post_div">
+    <div class="posts_div" id="post_div"> 
       <!-- -------------------------------------------------------------------------------------------------------------------- -->
 
       <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -82,10 +82,10 @@
     
   </div>
     <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
-            <a href="javascript:void(0)" id="changenow-<?php echo e($post->post_id); ?>" onclick="change(this.id);return false;" class="btn icon_style"><img  src="<?php echo e(asset('asset/images/heart.png')); ?>" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
+            <a href="javascript:void(0)" id="changenow-<?php echo e($post->post_id); ?>" onclick="change(this.id);return false;" class="btn icon_style"><img  src="<?php echo e(asset('asset/images/heart.png')); ?>" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;"> <?php echo e($post->likes_count); ?> </span></a>
        
           <a href="javascript:void(0)" class="btn" ><img src="<?php echo e(asset('asset/images/comment2.png')); ?>" style="height : 1.5rem;width:1.5rem;">
-        <span style="color:#999;">10</span>
+        <span style="color:#999;"> <?php echo e($post->comments_count); ?> </span>
         </a>
     
     </div>

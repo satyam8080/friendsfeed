@@ -1,8 +1,11 @@
 @include('templates.header') 
 @include('templates.navbar')
 <link href="{{asset('asset/css/searchadv.css')}}" rel="stylesheet">
+
 <!--From card-->
 
+@if($data != '' )
+@foreach($data as $search)
 
 <div class="card" style="width: 37rem;  margin:auto; margin-top : 2rem;">
      <div class="card-header" style="padding-bottom:.5rem !important; background-color:white;border:none;">
@@ -12,15 +15,17 @@
   
         <div style="height:100%; float:left; padding-left:1rem;padding-top:1rem;">
  
-    <h5 class="card-title" style=" line-height:1rem !important;"> {{ Auth::user()->name }} </h5>
-            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href="">{{  '@'.Auth::user()->username }}</a></p>
+    <h5 class="card-title" style=" line-height:1rem !important;"> {{ $search->name }} </h5>
+            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href="">{{  '@'.$search->username }}</a></p>
         </div>
     </div>
      <div class="card-body">
          <i class="fa fa-id-card fa-lg"></i>
              <b>
-             Hello boys
+             Hello boys! Chai pe lo
              </b>
          
          </div>
-</div>
+</div> 
+@endforeach
+@endif

@@ -164,10 +164,13 @@ class UserController extends Controller
     }
 }
 
-    public function searchadv($item)
+    public function searchadv(Request $request)
     {
-        $search = DB::table('users')->where('name','LIKE','%'.$item.'%')->get();
+        $item = $request->input('search');
+       $search = DB::table('users')->where('name','LIKE','%'.$item.'%')->get();
+            //$search = DB::select('select * from users where name like % :item %',['item'=> $item] );
         $total_row = $search->count();
+       
         if ($total_row > 0) {
             return view('pages/search')->withData($search);
         } else {
@@ -180,9 +183,16 @@ class UserController extends Controller
     {
         $user_id = $this->getUserId();
         $post = DB::select('select * from post where user_id = :user_id',['user_id'=> $user_id] );
-        $total_row = 
+        $total_row = count($post);
 
-        return view('pages/profile')->withData($post);
+        if ($total_row > 0) {
+            return view('pages/profile')->withData($post);
+        } else {
+            $post = "false";
+            return view('pages/profile')->withData($post);
+        }
+
+        
         //return view('pages/profile',['data'=>$post]);
 
             }
