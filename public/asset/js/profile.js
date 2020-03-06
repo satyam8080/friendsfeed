@@ -1,6 +1,8 @@
 var changeSlide;
 var change;
-
+ function comment_fun(value){
+       console.log(value);
+   }
   /*code function to toogle attributes value by jquery not created my me , so dont touch*/
    $.fn.toggleAttrVal = function(attr, val1, val2) {
     var test = $(this).attr(attr);
@@ -17,9 +19,59 @@ var change;
     return this;
   };
      change =  function(todo){
-         var n ="#"+ todo+" > img"
-          $(n).toggleAttrVal("src", "https://image.flaticon.com/icons/svg/148/148836.svg", "https://image.flaticon.com/icons/svg/1077/1077035.svg");
-     }
+        var like = "http://localhost/friendsfeed/public/asset/images/like.svg";
+         var dislike = "http://localhost/friendsfeed/public/asset/images/dislike.svg";
+          var n ="#"+ todo+" > img";
+         var for_img = todo.slice(10);
+            var img = $(n).attr("src");
+         if(img == dislike ){
+             $.ajax({
+        type:"GET",
+        cache:false,
+        url:"http://localhost/friendsfeed/public/likes",
+        data:{'post_id':for_img},
+        success:function(myData){
+               var for_like = "#"+todo+" > span";
+            var for_like_value = myData[0].likes_count;
+            for_like_value=""+for_like_value;
+            $(for_like).html(for_like_value);
+            var for_comment_value = myData[0].comments_count;
+            for_comment_value = ""+for_comment_value;
+            $("#comment-"+for_img).html(for_comment_value);
+            console.log($(for_like).html());
+         
+            }    
+    })
+    $.ajaxSetup({headers:{'csrftoken':'{{csrf_token()}}'}});
+             
+         }
+         else{
+            
+              $.ajax({
+        type:"GET",
+        cache:false,
+        url:"http://localhost/friendsfeed/public/dislike",
+        data:{'post_id':for_img},
+        success:function(myData){
+             var for_like = "#"+todo+" > span";
+            var for_like_value = myData[0].likes_count;
+            for_like_value=""+for_like_value;
+            $(for_like).html(for_like_value);
+            var for_comment_value = myData[0].comments_count;
+            for_comment_value = ""+for_comment_value;
+            $("#comment-"+for_img).html(for_comment_value);
+            console.log($(for_like).html());
+            
+            }    
+    });
+    $.ajaxSetup({headers:{'csrftoken':'{{csrf_token()}}'}});
+         }
+         
+//        $(n).toggleAttrVal("src", like, dislike);    
+         $(n).attr("src",function(ind,attr){
+             return attr == dislike ? like : dislike;
+         })
+     };
      $("#profile_edit_btn").click(function(){
          $( "#profile_edit_btn +  div").toggleClass("display");
      });
@@ -54,6 +106,7 @@ $(document).ready(function(){
     $("#post_div").addClass("display")
      $("#tags_div").addClass("display")
 }
+
     
       document.getElementById("5").classList.add("active");
  changeSlide = function(todo){
@@ -68,4 +121,5 @@ $(document).ready(function(){
          $("#tags_div").removeClass("display");     }
      
 }
+ 
 });

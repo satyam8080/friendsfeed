@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('asset/css/cardcss.css')}}">
 <script type="text/javascript" src="{{asset('asset/js/profile.js')}}">
 </script>
+<script>
+</script>
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -46,7 +48,7 @@
     <!--about div end-->
     <!--posts div start-->
     <div class="posts_div" id="post_div"> 
-      <!-- -------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------------------------------------------ -->
 
       @foreach($data as $post)
 
@@ -82,13 +84,50 @@
     
   </div>
     <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
+<<<<<<< HEAD
             <a href="javascript:void(0)" id="changenow-{{ $post->post_id }}" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;"> {{$post->likes_count}} </span></a>
        
           <a href="javascript:void(0)" class="btn" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
         <span style="color:#999;"> {{$post->comments_count}} </span>
+=======
+            <a href="javascript:void(0)" id="changenow-{{ $post->post_id }}" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/dislike.svg')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
+       
+          <a href="javascript:void(0)" class="btn" data-toggle="modal" data-target="#exampleModalCenter-{{ $post->post_id }}" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
+        <span style="color:#999;" id="comment-{{ $post->post_id }}">10</span>
+>>>>>>> 6488fa8ac0204f7200afcf9d30e8aaf3843c6aae
         </a>
-    
+        <!--for modal start-->
+        
+<div class="modal fade overflow_hidden" id="exampleModalCenter-{{ $post->post_id }}" tabindex="-1" style="z-index  : 9999 !important;" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"  role="document">
+    <div class="modal-content" style="width:37rem;">
+        <div class="modal-header">
+        <b>COMMENTS</b>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+      <div class="modal-body comment_field">
+          <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p> 
+               
+      </div>
+      <div class="modal-footer" style="align-content:left !important; text-align:left !important;" >
+<!--write code here for comment text field-->
+          <textarea id="text_field" class="text_field" spellcheck="false" rows="3"></textarea>
+          <button class="my_btn" onclick="comment_fun(this.id);" id="post_btn-{{ $post->post_id }}"><img src="{{asset('asset/images/send.png')}}" style="width:1.5rem;height:1.5rem;"></button>
+
+      </div>
     </div>
+  </div>
+         </div>
+        <!--modal ends-->
+        </div>
 </div>
 @endforeach
       <!-- -------------------------------------------------------------------------------------------------------------------- -->
@@ -101,7 +140,7 @@
     </div>
  
 </div>
-<script type="text/javascript" src="{{asset('asset/js/profile.js')}}">
+<!--<script type="text/javascript" src="{{asset('asset/js/profile.js')}}">-->
 </script>
 
 @include(' templates.footer')

@@ -184,6 +184,7 @@ class UserController extends Controller
         $user_id = $this->getUserId();
         $post = DB::select('select * from post where user_id = :user_id',['user_id'=> $user_id] );
         $total_row = count($post);
+       // $total_row = 
 
         if ($total_row > 0) {
             return view('pages/profile')->withData($post);
