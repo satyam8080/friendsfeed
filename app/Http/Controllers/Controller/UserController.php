@@ -180,7 +180,7 @@ class UserController extends Controller
     {
         $user_id = $this->getUserId();
         $post = DB::select('select * from post where user_id = :user_id',['user_id'=> $user_id] );
-        $total_row = 
+       // $total_row = 
 
         return view('pages/profile')->withData($post);
         //return view('pages/profile',['data'=>$post]);

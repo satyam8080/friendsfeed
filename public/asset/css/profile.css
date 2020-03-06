@@ -175,3 +175,28 @@ opacity : .8;}
     width: 100%;
   }
 }
+.overflow_hidden{
+    overflow: hidden !important;
+}
+.comment_field{
+    max-height: 20rem;
+    overflow-y: scroll !important;
+}
+.text_field{
+    border: none;
+    outline: none;
+    width: 25rem;
+    height: 2rem;
+    border-bottom: solid 1px black;
+    float: left;
+    align:left;
+    resize:vertical;
+    max-height: 4rem;
+}
+.my_btn{
+    outline: none;
+    border: none;
+    background:none;
+    box-shadow: none;
+    resize: none;
+}

@@ -54,10 +54,11 @@ class PostController extends Controller
     	 return redirect('/profile');
     }
 
-    public function likes($post_id)
+    public function likes(Request $request)
     {
+        if($request->ajax()) { 
+             $post_id = $request->get('post_id');
         $userid = $this->getUserId();
-        $post_id = $post_id;
         $like=DB::insert('insert into likes (likeBy, likeOn) values (?, ?)', [$userid, $post_id]);  // Return True on success
 
         if ($like) {
@@ -73,12 +74,14 @@ class PostController extends Controller
             return "false";
          } 
         
+    } 
     }
 
-    public function dislike($post_id)
+    public function dislike(Request $request)
     {
+        if($request->ajax()) { 
+        $post_id = $request->get('post_id');
         $userid = $this->getUserId();
-        $post_id = $post_id;
         $dislike = DB::delete('delete from likes where likeOn = ?',[$post_id]);
         
         if ($dislike) {
@@ -93,5 +96,6 @@ class PostController extends Controller
         } else {
             return "false";
          } 
+    } 
     }
 } 
