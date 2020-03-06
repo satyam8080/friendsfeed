@@ -19,13 +19,12 @@ var change;
     return this;
   };
      change =  function(todo){
-         var def = "http://localhost/friendsfeed/public/asset/images/heart.png";
         var like = "http://localhost/friendsfeed/public/asset/images/like.svg";
          var dislike = "http://localhost/friendsfeed/public/asset/images/dislike.svg";
           var n ="#"+ todo+" > img";
          var for_img = todo.slice(10);
             var img = $(n).attr("src");
-         if(img == dislike || img == def ){
+         if(img == dislike ){
              $.ajax({
         type:"GET",
         cache:false,
@@ -64,19 +63,15 @@ var change;
             console.log($(for_like).html());
             
             }    
-    })
+    });
     $.ajaxSetup({headers:{'csrftoken':'{{csrf_token()}}'}});
          }
          
-
-        
-          $(n).toggleAttrVal("src", like, dislike);
-         
-      
-         
-         
-         
-     }
+//        $(n).toggleAttrVal("src", like, dislike);    
+         $(n).attr("src",function(ind,attr){
+             return attr == dislike ? like : dislike;
+         })
+     };
      $("#profile_edit_btn").click(function(){
          $( "#profile_edit_btn +  div").toggleClass("display");
      });

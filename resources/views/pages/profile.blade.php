@@ -48,7 +48,7 @@
     <!--about div end-->
     <!--posts div start-->
     <div class="posts_div" id="post_div"> 
-      <!-- -------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------------------------------------------ -->
 
       @foreach($data as $post)
 
@@ -84,7 +84,7 @@
     
   </div>
     <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
-            <a href="javascript:void(0)" id="changenow-{{ $post->post_id }}" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/heart.png')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
+            <a href="javascript:void(0)" id="changenow-{{ $post->post_id }}" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/dislike.svg')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">250</span></a>
        
           <a href="javascript:void(0)" class="btn" data-toggle="modal" data-target="#exampleModalCenter-{{ $post->post_id }}" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
         <span style="color:#999;" id="comment-{{ $post->post_id }}">10</span>
