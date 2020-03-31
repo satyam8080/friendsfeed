@@ -16,7 +16,7 @@ class PostController extends Controller
 		$userid = Auth::user()->id;
 		return $userid;
 	} 
-
+ 
 
     public function store(Request $request)
     {
@@ -57,8 +57,15 @@ class PostController extends Controller
     public function likes(Request $request)
     {
         if($request->ajax()) { 
-             $post_id = $request->get('post_id');
+        $post_id = $request->get('post_id');
         $userid = $this->getUserId();
+
+        $check = DB::select('select * from likes where likeBy = :user_id and likeOn = :post_id',['user_id'=> $userid, 'post_id'=> $post_id] );
+        $count = count($check);
+
+        if ($count > 0) {
+            return "False";
+        } else {
         $like=DB::insert('insert into likes (likeBy, likeOn) values (?, ?)', [$userid, $post_id]);  // Return True on success
 
         if ($like) {
@@ -68,11 +75,12 @@ class PostController extends Controller
                 $count = DB::select('select likes_count,comments_count from post where post_id = :post_id',['post_id'=> $post_id]);
                  return $count;
              } else {
-                return "false";
+                return "False";
              }
          } else {
-            return "false";
+            return "False";
          } 
+     }
         
     } 
     }
@@ -82,6 +90,13 @@ class PostController extends Controller
         if($request->ajax()) { 
         $post_id = $request->get('post_id');
         $userid = $this->getUserId();
+
+        $check = DB::select('select * from likes where likeBy = :user_id and likeOn = :post_id',['user_id'=> $userid, 'post_id'=> $post_id] );
+        $count = count($check);
+
+        if ($count == 0) {
+            return "False";
+        } else {
         $dislike = DB::delete('delete from likes where likeOn = ?',[$post_id]);
         
         if ($dislike) {
@@ -91,11 +106,12 @@ class PostController extends Controller
                   $count = DB::select('select likes_count,comments_count from post where post_id = :post_id',['post_id'=> $post_id]);
                  return $count;
              } else {
-                return "false";
+                return "False";
              }
         } else {
-            return "false";
+            return "False";
          } 
+     }
     } 
     }
 } 

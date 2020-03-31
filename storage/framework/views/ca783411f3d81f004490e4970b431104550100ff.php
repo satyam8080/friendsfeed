@@ -1,13 +1,13 @@
-<?php echo e($lastSpace = strpos(Auth::user()->name ," ")); ?>
 
+<?php
+    $lastSpace = strpos(Auth::user()->name ," ");
+    if($lastSpace == FALSE) {
+    $userName = Auth::user()->name;
+}else {
+    $userName = substr(Auth::user()->name ,0,$lastSpace);
+}
 
-<?php if($lastSpace == FALSE): ?>
-<?php echo e($userName = Auth::user()->name); ?>
-
-<?php else: ?>
-<?php echo e($userName = substr(Auth::user()->name ,0,$lastSpace)); ?>
-
-<?php endif; ?>
+?>
  
 
  <link rel="stylesheet" type="text/css" href="<?php echo e(asset('asset/css/homecss.css')); ?> ">

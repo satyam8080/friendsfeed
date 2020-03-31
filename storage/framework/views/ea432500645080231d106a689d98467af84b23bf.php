@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('asset/css/cardcss.css')); ?>">
 <script type="text/javascript" src="<?php echo e(asset('asset/js/profile.js')); ?>">
 </script>
+<script>
+</script>
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -46,9 +48,11 @@
     <!--about div end-->
     <!--posts div start-->
     <div class="posts_div" id="post_div"> 
-      <!-- -------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------------------------------------------ -->
+    
 
       <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+      <?php if($post != "False"): ?>
 
 <div class="card" style="width: 37rem;  margin:auto; margin-top : 2rem;">
     <div class="card-header" style="padding-bottom:0rem !important;">
@@ -80,16 +84,50 @@
     <p class="card-text"><b> <?php echo e(Auth::user()->username); ?>: </b> <?php echo e($post->post); ?> <!-- You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size --></p>
 
     
-  </div>
+  </div> 
     <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
-            <a href="javascript:void(0)" id="changenow-<?php echo e($post->post_id); ?>" onclick="change(this.id);return false;" class="btn icon_style"><img  src="<?php echo e(asset('asset/images/heart.png')); ?>" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;"> <?php echo e($post->likes_count); ?> </span></a>
+            <a href="javascript:void(0)" id="changenow-<?php echo e($post->post_id); ?>" onclick="change(this.id);return false;" class="btn icon_style"><img  src="<?php echo e(asset('asset/images/dislike.svg')); ?>" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;"><?php echo e($post->likes_count); ?> </span></a>
        
-          <a href="javascript:void(0)" class="btn" ><img src="<?php echo e(asset('asset/images/comment2.png')); ?>" style="height : 1.5rem;width:1.5rem;">
-        <span style="color:#999;"> <?php echo e($post->comments_count); ?> </span>
+          <a href="javascript:void(0)" class="btn" data-toggle="modal" data-target="#exampleModalCenter-<?php echo e($post->post_id); ?>" ><img src="<?php echo e(asset('asset/images/comment2.png')); ?>" style="height : 1.5rem;width:1.5rem;">
+        <span style="color:#999;" id="comment-<?php echo e($post->post_id); ?>"><?php echo e($post->comments_count); ?></span>
         </a>
-    
+        <!--for modal start-->
+        
+<div class="modal fade overflow_hidden" id="exampleModalCenter-<?php echo e($post->post_id); ?>" tabindex="-1" style="z-index  : 9999 !important;" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"  role="document">
+    <div class="modal-content" style="width:37rem;">
+        <div class="modal-header">
+        <b>COMMENTS</b>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+      <div class="modal-body comment_field">
+          <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>    <p><b>User 1 : </b>Comment 1</p>
+          <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p>  <p> <b>User 2 :</b>Comment 2</p> 
+               
+      </div>
+      <div class="modal-footer" style="align-content:left !important; text-align:left !important;" >
+<!--write code here for comment text field-->
+          <textarea id="text_field" class="text_field" spellcheck="false" rows="3"></textarea>
+          <button class="my_btn" onclick="comment_fun(this.id);" id="post_btn-<?php echo e($post->post_id); ?>"><img src="<?php echo e(asset('asset/images/send.png')); ?>" style="width:1.5rem;height:1.5rem;"></button>
+
+      </div>
     </div>
+  </div>
+         </div>
+        <!--modal ends-->
+        </div>
 </div>
+
+<?php else: ?> 
+<h1>No Post yet</h1>
+<?php endif; ?>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       <!-- -------------------------------------------------------------------------------------------------------------------- -->
     
@@ -101,7 +139,7 @@
     </div>
  
 </div>
-<script type="text/javascript" src="<?php echo e(asset('asset/js/profile.js')); ?>">
+<!--<script type="text/javascript" src="<?php echo e(asset('asset/js/profile.js')); ?>">-->
 </script>
 
 <?php echo $__env->make(' templates.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

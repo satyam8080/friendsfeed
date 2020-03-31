@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test',function() {
-	return view('index');
+	return view('index'); 
 });
 /*Route::get('/profile',function() { 
 	return view('pages/profile');
@@ -28,6 +28,7 @@ Route::post('/acceptuser','Controller\UserController@acceptUser' );
 Route::post('/post','Controller\PostController@store' );
 Route::get('/search','Controller\UserController@search' )->name('search');
 Route::get('/profile','Controller\UserController@self_post' );
+Route::get('/user/{id}','Controller\UserController@user');
 
 
 Route::get('/likes', 'Controller\PostController@likes');

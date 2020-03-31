@@ -168,7 +168,6 @@ class UserController extends Controller
     {
         $item = $request->input('search');
        $search = DB::table('users')->where('name','LIKE','%'.$item.'%')->get();
-            //$search = DB::select('select * from users where name like % :item %',['item'=> $item] );
         $total_row = $search->count();
        
         if ($total_row > 0) {
@@ -182,26 +181,59 @@ class UserController extends Controller
     public function self_post()
     {
         $user_id = $this->getUserId();
-        $post = DB::select('select * from post where user_id = :user_id',['user_id'=> $user_id] );
+        //$post = DB::select('select * from post where user_id = :user_id',['user_id'=> $user_id] );
+        $post = $this->post($user_id);
         $total_row = count($post);
-       // $total_row = 
 
         if ($total_row > 0) {
             return view('pages/profile')->withData($post);
         } else {
-            $post = "false";
+            
+            $post = array(
+                'post'=> "False"
+            );
+
             return view('pages/profile')->withData($post);
         }
 
-        
-        //return view('pages/profile',['data'=>$post]);
 
             }
+
+    public function post($id)
+    {
+        $post = DB::select('select * from post where user_id = :user_id',['user_id'=> $id] ); 
+        return $post;
+    }
+
+    public function user($id)
+    {
+        $post = $this->post($id);
+        $user = DB::select('select * from users where id = :user_id',['user_id'=> $id] );
+        //$post = array_keys($post);
+       // $info = array_merge($user,$post);
+        $info = array(
+            'user' => $user,
+            'posts' => $post,
+            'exist' => "False"
+        );
+        $total_row = count($post);
+
+        if ($total_row > 0) {
+            $info['exist'] = "True";
+        }
+        return view('pages/users')->withData($info);
+          
+        
+
+    }
 
 
 
 
     
 }
+
+
+
 
 

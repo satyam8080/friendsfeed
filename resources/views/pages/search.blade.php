@@ -16,7 +16,7 @@
         <div style="height:100%; float:left; padding-left:1rem;padding-top:1rem;">
  
     <h5 class="card-title" style=" line-height:1rem !important;"> {{ $search->name }} </h5>
-            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href="">{{  '@'.$search->username }}</a></p>
+            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href="{{URL('user/'.$search->id)}} ">{{  '@'.$search->username }}</a></p>
         </div>
     </div>
      <div class="card-body">

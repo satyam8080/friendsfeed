@@ -1,6 +1,10 @@
 @include('templates.header') 
 @include('templates.navbar')
 
+@php
+$name = $data['user'][0]->name;
+$username = $data['user'][0]->username;
+@endphp
 
 <link rel="stylesheet" href="{{asset('asset/css/profile.css')}}">
    <script type="text/javascript" src="{{asset('asset/js/cardjs.js')}}"></script>
@@ -33,7 +37,7 @@
 </div>
       
 
-    <span style="display:inline; text-align:center; font-size:2rem;"><b> {{ Auth::user()->name }} </b></span><button class="edit_btn"><img alt="edit" src="{{asset('asset/images/pencil.png')}}" width="20px" height="20px"></button>
+    <span style="display:inline; text-align:center; font-size:2rem;"><b>{{ $name }}  </b></span><button class="edit_btn"><img alt="edit" src="{{asset('asset/images/pencil.png')}}" width="20px" height="20px"></button>
     
     <div style="width:100%; background-color:white;">
     <button class="profile_slide_btn" id="slide1" onclick="changeSlide(this.id);">About</button>
@@ -51,9 +55,9 @@
     <!-- ------------------------------------------------------------------------------------------------------------------------------ -->
     
 
-      @foreach($data as $post)
-      @if($post != "False")
-
+    @if($data['exist'] != "False")
+    @foreach($data['posts'] as $post)
+      
 <div class="card" style="width: 37rem;  margin:auto; margin-top : 2rem;">
     <div class="card-header" style="padding-bottom:0rem !important;">
 
@@ -62,8 +66,8 @@
   
         <div style="height:100%; float:left; padding-left:1rem;">
   
-    <h5 class="card-title" style=" line-height:1rem !important;"> {{ Auth::user()->name }} </h5>
-            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href="">{{  '@'.Auth::user()->username }}</a></p>
+    <h5 class="card-title" style=" line-height:1rem !important;"> {{ $name }} </h5>
+            <p style="line-height:.1rem;"><a style="text-decoration:none; display:inline;font-size:.8rem; color:#06216a; cursor:pointer;" href="">{{  '@'.$username }}</a></p>
         </div>
         
         <div style="float:right;">
@@ -81,15 +85,15 @@
   <img src="/friendsfeed/public/storage/users/images/{{$post->post_image}}" class="card-img-top"  alt="">
   <div class="card-body">
        <h5 class="card-title"></h5>
-    <p class="card-text"><b> {{Auth::user()->username}}: </b> {{$post->post}} <!-- You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size --></p>
+    <p class="card-text"><b> {{ $username }}: </b> {{$post->post}} <!-- You can paste any post that you want to display here but it would be good to describe about yourself . Here div caed size would increase on increasing the post size --></p>
 
     
   </div> 
     <div class="card-footer"  style="height : 3rem !important;padding-top:0.1rem !important;">
-            <a href="javascript:void(0)" id="changenow-{{ $post->post_id }}" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/dislike.svg')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;">{{$post->likes_count}} </span></a>
+            <a href="javascript:void(0)" id="changenow-{{ $post->post_id }}" onclick="change(this.id);return false;" class="btn icon_style"><img  src="{{asset('asset/images/dislike.svg')}}" style="height : 1.5rem;width:1.5rem;" > <span style="color:#999;"> {{ $post->likes_count}} </span></a>
        
           <a href="javascript:void(0)" class="btn" data-toggle="modal" data-target="#exampleModalCenter-{{ $post->post_id }}" ><img src="{{asset('asset/images/comment2.png')}}" style="height : 1.5rem;width:1.5rem;">
-        <span style="color:#999;" id="comment-{{ $post->post_id }}">{{$post->comments_count}}</span>
+        <span style="color:#999;" id="comment-{{ $post->post_id }}">10</span>
         </a>
         <!--for modal start-->
         
@@ -125,10 +129,12 @@
         </div>
 </div>
 
-@else 
+
+
+      @endforeach
+      @else 
 <h1>No Post yet</h1>
 @endif
-@endforeach
       <!-- -------------------------------------------------------------------------------------------------------------------- -->
     
     </div>

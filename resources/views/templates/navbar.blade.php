@@ -1,10 +1,13 @@
-{{ $lastSpace = strpos(Auth::user()->name ," ") }}
 
-@if($lastSpace == FALSE)
-{{ $userName = Auth::user()->name }}
-@else
-{{ $userName = substr(Auth::user()->name ,0,$lastSpace) }}
-@endif
+@php
+    $lastSpace = strpos(Auth::user()->name ," ");
+    if($lastSpace == FALSE) {
+    $userName = Auth::user()->name;
+}else {
+    $userName = substr(Auth::user()->name ,0,$lastSpace);
+}
+
+@endphp
  
 
  <link rel="stylesheet" type="text/css" href="{{asset('asset/css/homecss.css')}} ">
