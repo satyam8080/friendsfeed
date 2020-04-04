@@ -28,7 +28,6 @@ class CreateUsersTable extends Migration
             $table->string('bio')->default('NULL');
             $table->string('country')->default('NULL');
             $table->string('website')->default('NULL');
-            $table->string('test')->default('Anmol');
             $table->timestamps();
         });
     }

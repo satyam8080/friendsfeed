@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Likes extends Model
 {
     protected $table = 'likes';
-    public $primaryKey = 'likesId';
+    public $primaryKey = 'likeid';
     public $timestamps = true;
 
     public function posts()

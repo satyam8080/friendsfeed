@@ -20,7 +20,6 @@ class CreatePostTable extends Migration
             $table->string('post_image')->default('NULL');
             $table->integer('likes_count')->length(11)->default('0');
             $table->integer('comments_count')->length(11)->default('0');
-            $table->string('test')->default('Anmol');
             $table->timestamps();
             
         });
