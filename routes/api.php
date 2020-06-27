@@ -25,3 +25,4 @@ Route::post('/login','Api\UserController@login');
 Route::get('/userpost','Api\PostController@userpost');
 Route::post('/like','Api\PostController@like');
 Route::get('/likecheck','Api\PostController@likecheck');
+Route::post('/post','Api\PostController@post');

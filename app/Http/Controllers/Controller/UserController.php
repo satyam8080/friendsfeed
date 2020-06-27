@@ -45,7 +45,7 @@ class UserController extends Controller
 
             $error = 'false';
             $data['username'] = $username;
-            $data['error'] = $error;
+            $data['error'] = $error; 
             return view('pages/username')->withData($data);
             $this->$username_global = $username;
     	}

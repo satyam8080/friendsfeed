@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api; 
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,6 +17,8 @@ class PostController extends Controller
     	];
 
     	$validator = Validator::make($request->all(),$rules);
+        $userid = $request->user_id;
+        
 
     	if ($validator->fails()) {
     		return response()->json(["status" => 400,"message" => $validator->errors() ],400); 
@@ -24,7 +26,25 @@ class PostController extends Controller
     		$post = Post::where('user_id',$request->user_id)->count();
     		if ($post) {
     			$data = Post::where('user_id',$request->user_id)->get();
-    			return response()->json(["status" => 200,"message" => $data ],200);
+
+                   foreach ($data as $dat) {
+                        $pid = $dat['post_id']; 
+                        $like_check = DB::select('select * from likes where likeBy = :user_id and likeOn = :post_id',['user_id'=> $userid, 'post_id'=> $pid] );
+                          $like_count = count($like_check);
+                     if ($like_count) {
+                        $liked[] = array(
+                            'post_id'  => $pid,
+                            'status'   => "True",
+                        );
+                        } else {
+                            $liked[] = array(
+                            'post_id'  => $pid,
+                            'status'   => "False",
+                             );
+                    }        
+                    }            
+                $check = $liked;
+    			return response()->json(["status" => 200,"message" => $data,"like" => $check ],200);
     		} else{
     			return response()->json(["status" => 400,"message" => "No Post done by user" ],400);
     		}
@@ -100,14 +120,15 @@ class PostController extends Controller
     		'user_id'	=>	'required',
     		'post_id'	=>	'required',
     	];
-    	$user_id = $request->user_id;
-    	$post_id = $request->post_id;
 
     	$validator = Validator::make($request->all(),$rules);
 
     	if ($validator->fails()) {
     			return response()->json(["status" => 400,"message" => $validator->errors()],400);
     		} else{
+                $user_id = $request->user_id;
+                $post_id = $request->post_id;
+
     			$check = DB::select('select * from likes where likeBy = :user_id and likeOn = :post_id',['user_id'=>$user_id ,'post_id'=> $post_id]);
     			$count = count($check);
     			if ($count) {
@@ -117,5 +138,50 @@ class PostController extends Controller
     			}
     		}	
 
+    }
+
+    public function post(Request $request)
+    {
+        $rules = [
+            'user_id'   =>  'required',
+            'status'    =>  'required|max:9999|min:1',
+            'image'     =>  'nullable',
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if ($validator->fails()) {
+            return response()->json(["status" => 400,"message" => $validator->errors()],400);
+        } else{
+
+            $userid = $request->user_id;
+
+        //Handle file upload
+        if ($request->hasFile('image')) {
+            // Get Image name with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            // Get only file name
+            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            // Get only Extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+            //filename to store
+            $filenameToStore = $userid.'_'.time().'.'.$extension;
+            // upload image
+            $path = $request->file('image')->storeAs('public/users/images',$filenameToStore);
+        } else {
+            $filenameToStore = "NULL";
+        }
+
+        $photoURL = url('/storage/users/images/'.$filenameToStore);
+
+        // Create post
+        $post = new Post;
+        $post->post = $request->status;
+        $post->post_image = $filenameToStore;
+        $post->user_id  = $userid;
+        $post->save();
+
+         return response()->json(["status" => 200, "message" => ['URL' => $photoURL]],200);
+        }
     }
 }
