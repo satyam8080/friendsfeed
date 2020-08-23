@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 
+Route::get('/link', function () {
+    Artisan::call('storage:link');
+});
+
 Route::prefix('users')->group(function () {
     Route::post('register','Api\v1\RegisterController@register');
     Route::post('login', 'Api\v1\LoginController@login');
@@ -29,5 +33,6 @@ Route::middleware('auth:api')->group(function () {
         Route::get('myProfile','Api\v1\UserController@myProfile');
         Route::get('myPosts','Api\v1\UserController@myPosts');
         Route::get('all','Api\v1\UserController@index');
+        Route::post('post','Api\v1\PostsController@store');
     });
 });
