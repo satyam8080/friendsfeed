@@ -39,7 +39,7 @@ class PostsController extends Controller
                 // upload image
                 $path = $request->file('image1')->storeAs($file_path,$filenameToStore1);
             } else {
-                $filenameToStore1 = "NULL";
+                $filenameToStore1 = null;
             }
 
             if ($request->hasFile('image2')) {
@@ -49,7 +49,7 @@ class PostsController extends Controller
                 $filenameToStore2 = $user_id.time().rand(0,9999).'.'.$extension;
                 $path = $request->file('image2')->storeAs($file_path,$filenameToStore2);
             } else {
-                $filenameToStore2 = "NULL";
+                $filenameToStore2 = null;
             }
 
             if ($request->hasFile('image3')) {
@@ -59,7 +59,7 @@ class PostsController extends Controller
                 $filenameToStore3 = $user_id.time().rand(0,9999).'.'.$extension;
                 $path = $request->file('image3')->storeAs($file_path,$filenameToStore3);
             } else {
-                $filenameToStore3 = "NULL";
+                $filenameToStore3 = null;
             }
 
             if ($request->hasFile('image4')) {
@@ -69,7 +69,7 @@ class PostsController extends Controller
                 $filenameToStore4 = $user_id.time().rand(0,9999).'.'.$extension;
                 $path = $request->file('image4')->storeAs($file_path,$filenameToStore4);
             } else {
-                $filenameToStore4 = "NULL";
+                $filenameToStore4 = null;
             }
 
             if ($request->hasFile('image5')) {
@@ -79,9 +79,8 @@ class PostsController extends Controller
                 $filenameToStore5 = $user_id.time().rand(0,9999).'.'.$extension;
                 $path = $request->file('image5')->storeAs($file_path,$filenameToStore5);
             } else {
-                $filenameToStore5 = "NULL";
+                $filenameToStore5 = null;
             }
-            #$photoURL = url("/".$file_path."/".$filenameToStore);
 
             $create = Post::create([
                 'user_id' => $user_id,
