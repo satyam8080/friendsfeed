@@ -15,6 +15,23 @@ class LoginController extends Controller
             'email' => 'required|string',
             'password' => 'required|string'
         ]);
+        $user = User::where('email', $request->email)->get();
+
+        if (count($user) == 0){
+            return response()->json(["status" => 404, "message" => "Invalid Credentials"]);
+        } else{
+            if ($user[0]->active == 0){
+                $otp = VerifyOtpController::sendOtp($request->email);
+                $message = "Please verify your OTP send to your Email: ".$request->email;
+                $data = [
+                    'user_id' => $user[0]->id ,
+                    'email' => $request->email,
+                    'msg' => $message
+                ];
+
+                return response()->json(["status" => 401, "message" => [$data] ]);
+            }
+        }
 
         if (!Auth::attempt( $login )) {
             return response()->json(["status" => 404, "message" => "Invalid Credentials"]);

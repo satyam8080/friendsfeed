@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Validator;
 
 class VerifyOtpController extends Controller
 {
+    public static function sendOtp($email){
+        $otp = rand(111111,999999);
+        User::where('email', $email)->update([
+            'otp' => $otp
+        ]);
+
+        $details = [
+            'title' => 'Account Verification',
+            'body' => $otp
+        ];
+
+        \Mail::to($email)->send(new \App\Mail\AccountVerification($details));
+        return null;
+    }
     public static function RegisterVerify(Request $request){
         $rules = [
             'user_id' => 'required',

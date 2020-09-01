@@ -54,7 +54,7 @@ class RegisterController extends Controller
                      'email' => $request->email,
                      'msg' => $message
                  ];
-                return response()->json(["status" => 200,"message" => $data ]);
+                return response()->json(["status" => 200,"message" => [$data] ]);
             }
         }
     }
