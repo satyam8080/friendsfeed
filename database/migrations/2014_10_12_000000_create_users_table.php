@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->integer('followers')->default(0);
             $table->string('bio')->nullable();
             $table->string('country')->nullable();
+            $table->integer('otp')->default(0);
+            $table->enum('active',[0,1])->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

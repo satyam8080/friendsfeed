@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers\Api\v1;
+
+use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
+class VerifyOtpController extends Controller
+{
+    public static function RegisterVerify(Request $request){
+        $rules = [
+            'user_id' => 'required',
+            'otp' => 'required|min:6|max:6'
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+        if($validator->fails()){
+            return response()->json(["status" => 404 ,"message" => $validator->errors() ]);
+        } else{
+            $user = User::where('id', $request->user_id)->get();
+            if (count($user) == 0){
+                return response()->json(["status" => 404,"message" => "User not found"]);
+            } else{
+                if ($user[0]->otp == $request->otp){
+                    User::where('id', $request->user_id )->update([
+                        'active' => '1'
+                    ]);
+                    return response()->json(["status" => 200,"message" => "OTP verified successfully"]);;
+                } else{
+                    return response()->json(["status" => 404,"message" => "Invalid OTP"]);
+                }
+            }
+        }
+    }
+}

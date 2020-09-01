@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -28,16 +29,32 @@ class RegisterController extends Controller
             if($find) {
                 return response()->json(["status" => 404,"message" => "User Already exist"]);
             } else {
+                $otp = rand(111111,999999);
                 $create = User::create([
                     'name' => $request->name ,
                     'email' => $request->email ,
                     'password' => Hash::make($request->password) ,
                     'dob' => $request->dob ,
-                    'gender' => $request->gender
+                    'gender' => $request->gender ,
+                    'otp' => $otp
                 ]);
                 $create_id = $create->id;
                 $username = self::createDefaultUsername($create_id, $request->name);
-                return response()->json(["status" => 200,"message" => $create ]);
+
+                $details = [
+                    'title' => 'Account Verification',
+                    'body' => $otp
+                ];
+
+                \Mail::to($request->email)->send(new \App\Mail\AccountVerification($details));
+
+                $message = "Registration Successful, please verify your OTP send to your email: ".$request->email;
+                 $data = [
+                     'user_id' => $create_id,
+                     'email' => $request->email,
+                     'msg' => $message
+                 ];
+                return response()->json(["status" => 200,"message" => $data ]);
             }
         }
     }
