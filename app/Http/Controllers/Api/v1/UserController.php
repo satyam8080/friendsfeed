@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\LoginResource;
-use App\Http\Resources\PostsCollection;
+use App\Http\Resources\UserResource;
 use App\Http\Resources\PostsResource;
 use App\Models\Like;
 use App\Models\Post;
 use App\User;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +19,7 @@ class UserController extends Controller
 
   public static function myProfile(Request $request){
         $user = User::where('id', Auth::user()->id)->get();
-        return response()->json(["status" => 200,"message" => LoginResource::collection($user) ]);
+        return response()->json(["status" => 200,"message" => UserResource::collection($user) ]);
   }
 
   public static function myPosts(Request $request){

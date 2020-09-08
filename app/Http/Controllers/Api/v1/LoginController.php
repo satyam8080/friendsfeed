@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\LoginResource;
+use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +42,7 @@ class LoginController extends Controller
         $response = [
             'token_type' => 'Bearer',
             'access_token' => $accessToken,
-            'user' => LoginResource::collection($users)
+            'user' => UserResource::collection($users)
         ];
 
         return response()->json(["status" => 200, "message" => $response ]);

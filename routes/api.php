@@ -35,6 +35,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('myPosts','Api\v1\UserController@myPosts');
         Route::get('all','Api\v1\UserController@index');
         Route::post('post','Api\v1\PostsController@store');
+        Route::get('search','Api\v1\SearchController@search');
     });
 });
 
