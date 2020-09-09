@@ -32,7 +32,9 @@ Route::prefix('users')->group(function () {
 Route::middleware('auth:api')->group(function () {
     Route::prefix('users')->group(function () {
         Route::get('myProfile','Api\v1\UserController@myProfile');
+        Route::get('userProfile','Api\v1\UserController@userProfile');
         Route::get('myPosts','Api\v1\UserController@myPosts');
+        Route::get('userPosts','Api\v1\UserController@userPosts');
         Route::get('all','Api\v1\UserController@index');
         Route::post('post','Api\v1\PostsController@store');
         Route::get('search','Api\v1\SearchController@search');
