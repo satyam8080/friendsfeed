@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             'email' => $this->email ,
             'dob' => $this->dob ,
             'gender' => $this->gender ,
-            'profileImage' => $this->profileImage ,
+            'profileImage' => !empty($this->profileImage) ? env('APP_URL')."/storage/users/".$this->user_id."/posts/images/".$this->profileImage : null ,
             'following' => $this->following ,
             'followers' => $this->followers ,
             'bio' => $this->bio ,
