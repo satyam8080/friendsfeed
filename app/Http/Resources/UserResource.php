@@ -25,6 +25,7 @@ class UserResource extends JsonResource
             'following' => $this->following ,
             'followers' => $this->followers ,
             'bio' => $this->bio ,
+            'active' => $this->active ,
             'created_at' => $this->created_at
         ];
     }

@@ -26,10 +26,11 @@ class LoginController extends Controller
                 $data = [
                     'user_id' => $user[0]->id ,
                     'email' => $request->email,
+                    'active' => 0 ,
                     'msg' => $message
                 ];
 
-                return response()->json(["status" => 401, "message" => [$data] ], 401);
+                return response()->json(["status" => 423, "message" => [$data] ], 423);
             }
         }
 
