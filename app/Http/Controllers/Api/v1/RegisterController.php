@@ -23,11 +23,11 @@ class RegisterController extends Controller
 
         $validator = Validator::make($request->all(),$rules);
         if($validator->fails()){
-            return response()->json(["status" => 404 ,"message" => $validator->errors() ]);
+            return response()->json(["status" => 404 ,"message" => $validator->errors() ], 404);
         } else {
             $find = User::where('email',$request->email)->count();
             if($find) {
-                return response()->json(["status" => 404,"message" => "User Already exist"]);
+                return response()->json(["status" => 404,"message" => "User Already exist"], 404);
             } else {
                 $otp = rand(111111,999999);
                 $create = User::create([
@@ -54,7 +54,7 @@ class RegisterController extends Controller
                      'email' => $request->email,
                      'msg' => $message
                  ];
-                return response()->json(["status" => 200,"message" => [$data] ]);
+                return response()->json(["status" => 200,"message" => [$data] ], 200);
             }
         }
     }

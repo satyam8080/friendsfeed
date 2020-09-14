@@ -19,7 +19,7 @@ class LikeController extends Controller
 
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
-            return response()->json(["status" => 400,"message" => $validator->errors()]);
+            return response()->json(["status" => 404,"message" => $validator->errors()], 404);
         } else{
             $like = Like::where([ ['likeBy' , Auth::user()->id], ['likeOn' , $request->post_id] ])->get();
             if (count($like)){
@@ -27,7 +27,7 @@ class LikeController extends Controller
                 Post::where('id', $request->post_id)->decrement('likes_count',1);
                 $post = Post::where('id', $request->post_id)->get();
 
-                return response()->json(["status" => 200,"message" => PostsResource::collection($post)]);
+                return response()->json(["status" => 200,"message" => PostsResource::collection($post)], 200);
             } else{
                 Like::create([
                     'likeBy' => Auth::user()->id,
@@ -36,7 +36,7 @@ class LikeController extends Controller
                 Post::where('id', $request->post_id)->increment('likes_count',1);
                 $post = Post::where('id', $request->post_id)->get();
 
-                return response()->json(["status" => 200,"message" => PostsResource::collection($post)]);
+                return response()->json(["status" => 200,"message" => PostsResource::collection($post)], 200);
             }
         }
     }

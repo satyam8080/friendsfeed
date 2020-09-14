@@ -32,19 +32,19 @@ class VerifyOtpController extends Controller
 
         $validator = Validator::make($request->all(),$rules);
         if($validator->fails()){
-            return response()->json(["status" => 404 ,"message" => $validator->errors() ]);
+            return response()->json(["status" => 404 ,"message" => $validator->errors() ], 404);
         } else{
             $user = User::where('id', $request->user_id)->get();
             if (count($user) == 0){
-                return response()->json(["status" => 404,"message" => "User not found"]);
+                return response()->json(["status" => 404,"message" => "User not found"], 404);
             } else{
                 if ($user[0]->otp == $request->otp){
                     User::where('id', $request->user_id )->update([
                         'active' => '1'
                     ]);
-                    return response()->json(["status" => 200,"message" => "OTP verified successfully"]);;
+                    return response()->json(["status" => 200,"message" => "OTP verified successfully"],200);
                 } else{
-                    return response()->json(["status" => 404,"message" => "Invalid OTP"]);
+                    return response()->json(["status" => 404,"message" => "Invalid OTP"], 404);
                 }
             }
         }

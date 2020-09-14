@@ -22,7 +22,7 @@ class PostsController extends Controller
         ];
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
-            return response()->json(["status" => 404,"message" => $validator->errors()]);
+            return response()->json(["status" => 404,"message" => $validator->errors()], 404);
         } else{
             $user_id = Auth::user()->id;
             $file_path = "public/users/".$user_id."/posts/images";
@@ -93,7 +93,7 @@ class PostsController extends Controller
             ]);
             $create_id = $create->id;
             $post = Post::where('id', $create_id)->get();
-            return response()->json(["status" => 200,"message" => PostsResource::collection($post) ]);
+            return response()->json(["status" => 200,"message" => PostsResource::collection($post) ], 200);
         }
     }
 }

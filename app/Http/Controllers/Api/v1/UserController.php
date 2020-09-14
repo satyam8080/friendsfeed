@@ -30,13 +30,13 @@ class UserController extends Controller
 
       $validator = Validator::make($request->all(),$rules);
       if($validator->fails()){
-          return response()->json(["status" => 404 ,"message" => $validator->errors() ]);
+          return response()->json(["status" => 404 ,"message" => $validator->errors() ], 404);
       } else{
           $user = User::where('id', $request->user_id)->get();
           if (count($user) == 0){
-              return response()->json(["status" => 404 ,"message" => "User not found" ]);
+              return response()->json(["status" => 404 ,"message" => "User not found" ], 404);
           }
-          return response()->json(["status" => 200,"message" => UserResource::collection($user) ]);
+          return response()->json(["status" => 200,"message" => UserResource::collection($user) ], 200);
       }
     }
 
@@ -47,13 +47,13 @@ class UserController extends Controller
 
       $validator = Validator::make($request->all(),$rules);
       if($validator->fails()){
-          return response()->json(["status" => 404 ,"message" => $validator->errors() ]);
+          return response()->json(["status" => 404 ,"message" => $validator->errors() ], 404);
       } else{
           $posts = Post::where('user_id', $request->user_id )->orderBy('created_at','DESC')->Paginate(5);
           if (count($posts)){
-              return response()->json(["status" => 200,"message" => PostsResource::collection($posts), "links" => $posts ]);
+              return response()->json(["status" => 200,"message" => PostsResource::collection($posts), "links" => $posts ], 200);
           } else{
-              return response()->json(["status" => 404,"message" => "No posts done by user" ]);
+              return response()->json(["status" => 404,"message" => "No posts done by user" ], 404);
           }
       }
   }
@@ -61,9 +61,9 @@ class UserController extends Controller
   public static function myPosts(Request $request){
         $posts = Post::where('user_id', Auth::user()->id )->orderBy('created_at','DESC')->Paginate(5);
         if (count($posts)){
-            return response()->json(["status" => 200,"message" => PostsResource::collection($posts), "links" => $posts ]);
+            return response()->json(["status" => 200,"message" => PostsResource::collection($posts), "links" => $posts ], 200);
         } else{
-            return response()->json(["status" => 404,"message" => "No posts done by user" ]);
+            return response()->json(["status" => 404,"message" => "No posts done by user" ], 404);
         }
     }
 

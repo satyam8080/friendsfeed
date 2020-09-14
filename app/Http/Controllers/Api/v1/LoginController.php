@@ -18,7 +18,7 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)->get();
 
         if (count($user) == 0){
-            return response()->json(["status" => 404, "message" => "Invalid Credentials"]);
+            return response()->json(["status" => 404, "message" => "Invalid Credentials"], 404);
         } else{
             if ($user[0]->active == 0){
                 $otp = VerifyOtpController::sendOtp($request->email);
@@ -29,12 +29,12 @@ class LoginController extends Controller
                     'msg' => $message
                 ];
 
-                return response()->json(["status" => 401, "message" => [$data] ]);
+                return response()->json(["status" => 401, "message" => [$data] ], 401);
             }
         }
 
         if (!Auth::attempt( $login )) {
-            return response()->json(["status" => 404, "message" => "Invalid Credentials"]);
+            return response()->json(["status" => 404, "message" => "Invalid Credentials"], 404);
         }
 
         $accessToken = Auth::user()->createToken('authToken')->accessToken;
@@ -45,6 +45,6 @@ class LoginController extends Controller
             'user' => UserResource::collection($users)
         ];
 
-        return response()->json(["status" => 200, "message" => $response ]);
+        return response()->json(["status" => 200, "message" => $response ], 200);
     }
 }
