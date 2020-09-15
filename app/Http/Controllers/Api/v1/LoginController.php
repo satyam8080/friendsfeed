@@ -47,6 +47,6 @@ class LoginController extends Controller
             'user' => UserResource::collection($users)
         ];
 
-        return response()->json(["status" => 200, "message" => $response ], 200);
+        return response()->json(["status" => 200, "message" => [$response] ], 200);
     }
 }
