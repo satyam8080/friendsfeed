@@ -41,6 +41,7 @@ class LoginController extends Controller
         $accessToken = Auth::user()->createToken('authToken')->accessToken;
         $users = User::where('id',Auth::user()->id)->get();
         $response = [
+            'active' => 1 ,
             'token_type' => 'Bearer',
             'access_token' => $accessToken,
             'user' => UserResource::collection($users)
