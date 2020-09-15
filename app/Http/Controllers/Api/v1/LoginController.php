@@ -7,6 +7,8 @@ use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -48,5 +50,62 @@ class LoginController extends Controller
         ];
 
         return response()->json(["status" => 200, "message" => [$response] ], 200);
+    }
+
+    public static function resetPasswordRequest(Request $request){
+        $rules = [
+            'email' => 'required',
+        ];
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return response()->json(["status" => 404,"message" => $validator->errors()], 404);
+        } else {
+            if (User::where('email', $request->email)->count() == 0){
+                return response()->json(["status" => 404, "message" => "Invalid email"], 404);
+            }
+
+            VerifyOtpController::resetPasswordOtp($request->email);
+
+            $message = "Please verify your OTP send to your Email: ".$request->email;
+            $data = [
+                'email' => $request->email,
+                'msg' => $message
+            ];
+            return response()->json(["status" => 200, "message" => [$data]], 200);
+        }
+    }
+
+    public static function resetPassword(Request $request){
+        $rules = [
+            'email' => 'required',
+            'otp' => 'required',
+            'password' => 'required'
+        ];
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return response()->json(["status" => 404,"message" => $validator->errors()], 404);
+        } else{
+            $user = User::where('email', $request->email)->get();
+            if (count($user) == 0){
+                return response()->json(["status" => 404, "message" => "Invalid email"], 404);
+            }
+
+            if ($user[0]->otp == $request->otp){
+                User::where('email', $request->email)->update([
+                    'password' => Hash::make($request->password)
+                ]);
+
+                $details = [
+                    'title' => 'Security Alert',
+                    'name' => $user[0]->name,
+                    'email' => $user[0]->email
+                ];
+
+                \Mail::to($request->email)->send(new \App\Mail\ResetPasswordSuccessful($details));
+                return response()->json(["status" => 200, "message" => "Password Change Successful"], 200);
+            } else{
+                return response()->json(["status" => 404, "message" => "Invalid OTP"], 404);
+            }
+        }
     }
 }

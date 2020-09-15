@@ -27,6 +27,8 @@ Route::prefix('users')->group(function () {
     Route::post('register','Api\v1\RegisterController@register');
     Route::post('login', 'Api\v1\LoginController@login');
     Route::post('verifyOtp','Api\v1\VerifyOtpController@RegisterVerify');
+    Route::post('resetPasswordRequest', 'Api\v1\LoginController@resetPasswordRequest');
+    Route::post('resetPassword', 'Api\v1\LoginController@resetPassword');
 });
 
 Route::middleware('auth:api')->group(function () {

@@ -49,4 +49,19 @@ class VerifyOtpController extends Controller
             }
         }
     }
+
+    public static function resetPasswordOtp($email){
+            $otp = rand(111111,999999);
+            User::where('email', $email)->update([
+                'otp' => $otp
+            ]);
+
+            $details = [
+                'title' => 'Reset Password',
+                'body' => $otp
+            ];
+
+            \Mail::to($email)->send(new \App\Mail\ResetPassword($details));
+            return null;
+    }
 }
