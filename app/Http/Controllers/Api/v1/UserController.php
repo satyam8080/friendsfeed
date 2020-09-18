@@ -75,4 +75,38 @@ class UserController extends Controller
             return 0;
         }
   }
+
+  public static function changeProfilePicture(Request $request){
+      $rules = [
+          'image' => 'required'
+      ];
+      $validator = Validator::make($request->all(),$rules);
+      if ($validator->fails()) {
+          return response()->json(["status" => 404,"message" => $validator->errors()], 404);
+      } else{
+          $user_id = Auth::user()->id;
+          $file_path = "public/users/".$user_id."/profile/images";
+          //Handle file upload
+          if ($request->hasFile('image')) {
+              // Get Image name with extension
+              $filenameWithExt = $request->file('image')->getClientOriginalName();
+              // Get only file name
+              $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+              // Get only Extension
+              $extension = $request->file('image')->getClientOriginalExtension();
+              //filename to store
+              $filenameToStore = $user_id.time().rand(0,9999).'.'.$extension;
+              // upload image
+              $path = $request->file('image')->storeAs($file_path,$filenameToStore);
+          } else {
+              $filenameToStore = null;
+          }
+
+          User::where('id', Auth::user()->id)->update([
+              'profileImage' => $filenameToStore
+          ]);
+          $user = User::where('id', Auth::user()->id)->get();
+          return response()->json(["status" => 200,"message" => UserResource::collection($user) ], 200);
+      }
+  }
 }

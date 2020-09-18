@@ -38,10 +38,11 @@ Route::middleware('auth:api')->group(function () {
         Route::get('myPosts','Api\v1\UserController@myPosts');
         Route::get('userPosts','Api\v1\UserController@userPosts');
         Route::get('all','Api\v1\UserController@index');
-        Route::post('post','Api\v1\PostsController@store');
         Route::get('search','Api\v1\SearchController@search');
+        Route::post('post','Api\v1\PostsController@store');
         Route::post('like','Api\v1\LikeController@postLike');
         Route::post('follow','Api\v1\FollowController@follow');
+        Route::post('changeProfilePicture','Api\v1\UserController@changeProfilePicture');
     });
 });
 
