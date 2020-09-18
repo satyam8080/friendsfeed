@@ -41,6 +41,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('post','Api\v1\PostsController@store');
         Route::get('search','Api\v1\SearchController@search');
         Route::post('like','Api\v1\LikeController@postLike');
+        Route::post('follow','Api\v1\FollowController@follow');
     });
 });
 

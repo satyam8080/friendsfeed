@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Controllers\Api\v1\FollowController;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class UserResource extends JsonResource
 {
@@ -24,6 +26,7 @@ class UserResource extends JsonResource
             'profileImage' => !empty($this->profileImage) ? env('APP_URL')."/storage/users/".$this->user_id."/posts/images/".$this->profileImage : null ,
             'following' => $this->following ,
             'followers' => $this->followers ,
+            'follow' => FollowController::check($this->id) ,
             'bio' => $this->bio ,
             'active' => $this->active ,
             'created_at' => $this->created_at
