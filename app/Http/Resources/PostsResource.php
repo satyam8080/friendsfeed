@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Controllers\Api\v1\PostsController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ class PostsResource extends JsonResource
         return [
             'id' => $this->id ,
             'user_id' => $this->user_id ,
+            'user' => PostsController::userDetails($this->user_id) ,
             'post' => $this->post ,
             'post_image1' => !empty($this->post_image1) ? env('APP_URL')."/storage/users/".$this->user_id."/posts/images/".$this->post_image1 : null ,
             'post_image2' => !empty($this->post_image2) ? env('APP_URL')."/storage/users/".$this->user_id."/posts/images/".$this->post_image2 : null ,

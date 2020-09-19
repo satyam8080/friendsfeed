@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostsResource;
+use App\Models\Followers;
 use App\Models\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -95,5 +97,30 @@ class PostsController extends Controller
             $post = Post::where('id', $create_id)->get();
             return response()->json(["status" => 200,"message" => PostsResource::collection($post) ], 200);
         }
+    }
+
+    public static function get(Request $request){
+        $following = Followers::where('follow_by', Auth::user()->id )->get();
+        if (count($following) == 0){
+            return response()->json(["status" => 404,"message" => "You have not follow any one, please follow someone to start viewing there posts here" ], 404);
+        } else{
+            foreach ($following as $follow){
+                $arr[] = $follow->follow_on;
+            }
+            #return $arr;
+            $posts = Post::whereIn('user_id',$arr)->orderBy('created_at','DESC')->get();
+            return response()->json(["status" => 200,"message" => PostsResource::collection($posts) ], 200);
+        }
+    }
+
+    public static function userDetails($user_id){
+        $user = User::where('id',$user_id)->get();
+        $data[] = [
+            'id' => $user[0]->id,
+            'name' => $user[0]->name,
+            'username' => $user[0]->username,
+            'profileImage' => !empty($user[0]->profileImage) ? env('APP_URL')."/storage/users/".$user[0]->id."/profile/images/".$user[0]->profileImage : null
+        ];
+        return $data;
     }
 }
