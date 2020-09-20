@@ -107,8 +107,10 @@ class PostsController extends Controller
             foreach ($following as $follow){
                 $arr[] = $follow->follow_on;
             }
-            #return $arr;
             $posts = Post::whereIn('user_id',$arr)->orderBy('created_at','DESC')->get();
+            if (count($posts) == 0){
+                return response()->json(["status" => 404,"message" => "The peoples you follow have not post any thing, follow some other peoples to start viewing there posts here" ], 404);
+            }
             return response()->json(["status" => 200,"message" => PostsResource::collection($posts) ], 200);
         }
     }
