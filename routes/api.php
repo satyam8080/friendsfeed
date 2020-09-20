@@ -33,6 +33,7 @@ Route::prefix('users')->group(function () {
 
 Route::middleware('auth:api')->group(function () {
     Route::prefix('users')->group(function () {
+        Route::get('remove','Api\v1\MyController@removeProfilePicture');
         Route::get('myProfile','Api\v1\UserController@myProfile');
         Route::get('userProfile','Api\v1\UserController@userProfile');
         Route::get('myPosts','Api\v1\UserController@myPosts');
