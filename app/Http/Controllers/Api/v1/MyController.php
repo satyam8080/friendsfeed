@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MyController extends Controller
 {
-    public static function removeProfilePicture(Request $request){
+    public static function one(Request $request){
         $image = User::where('id',Auth::user()->id)->get()[0]->profileImage;
         $server = $_SERVER['DOCUMENT_ROOT']; #1416005788233912.jpeg
 
