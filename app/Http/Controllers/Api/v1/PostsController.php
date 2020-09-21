@@ -8,6 +8,7 @@ use App\Models\Followers;
 use App\Models\Post;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -95,6 +96,7 @@ class PostsController extends Controller
             ]);
             $create_id = $create->id;
             $post = Post::where('id', $create_id)->get();
+            Artisan::call('storage:link');
             return response()->json(["status" => 200,"message" => PostsResource::collection($post) ], 200);
         }
     }

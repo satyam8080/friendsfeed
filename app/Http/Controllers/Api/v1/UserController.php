@@ -9,6 +9,7 @@ use App\Models\Like;
 use App\Models\Post;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -106,6 +107,7 @@ class UserController extends Controller
               'profileImage' => $filenameToStore
           ]);
           $user = User::where('id', Auth::user()->id)->get();
+          Artisan::call('storage:link');
           return response()->json(["status" => 200,"message" => UserResource::collection($user) ], 200);
       }
   }
