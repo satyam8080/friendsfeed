@@ -73,7 +73,6 @@ class RegisterController extends Controller
         }
         else {
             self::createUserNameDefault($created_id, $name);
-
         }
 
     }

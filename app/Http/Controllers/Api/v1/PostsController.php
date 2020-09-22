@@ -109,17 +109,17 @@ class PostsController extends Controller
             foreach ($following as $follow){
                 $arr[] = $follow->follow_on;
             }
-            $posts = Post::whereIn('user_id',$arr)->orderBy('created_at','DESC')->get();
+            $posts = Post::whereIn('user_id',$arr)->orderBy('created_at','DESC')->paginate(5);
             if (count($posts) == 0){
                 return response()->json(["status" => 404,"message" => "The peoples you follow have not post any thing, follow some other peoples to start viewing there posts here" ], 404);
             }
-            return response()->json(["status" => 200,"message" => PostsResource::collection($posts) ], 200);
+            return response()->json(["status" => 200,"message" => PostsResource::collection($posts), "links" => $posts ], 200);
         }
     }
 
     public static function userDetails($user_id){
         $user = User::where('id',$user_id)->get();
-        $data[] = [
+        $data = [
             'id' => $user[0]->id,
             'name' => $user[0]->name,
             'username' => $user[0]->username,
