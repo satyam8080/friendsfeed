@@ -34,7 +34,9 @@ class CommentController extends Controller
             if (count($comment) == 0){
                 return response()->json(["status" => 404,"message" => "Unable to post comment" ], 404);
             }
-            return response()->json(["status" => 200,"message" => CommentResoure::collection($comment), "links" => $comment ], 200);
+            return response()->json(["status" => 200,"message" => CommentResoure::collection($comment),
+                "likes_count" => CommonController::likesCount($request->post_id), "comments_count" => CommonController::commentsCount($request->post_id) ,
+                "links" => $comment ], 200);
         }
     }
 
@@ -52,7 +54,9 @@ class CommentController extends Controller
             if (count($comment) == 0) {
                 return response()->json(["status" => 404, "message" => "No comment for this post"], 404);
             }
-            return response()->json(["status" => 200, "message" => CommentResoure::collection($comment), "links" => $comment], 200);
+            return response()->json(["status" => 200, "message" => CommentResoure::collection($comment),
+                "likes_count" => CommonController::likesCount($request->post_id), "comments_count" => CommonController::commentsCount($request->post_id) ,
+                "links" => $comment], 200);
         }
     }
 
