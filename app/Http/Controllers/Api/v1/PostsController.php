@@ -41,9 +41,7 @@ class PostsController extends Controller
                 //filename to store
                 $filenameToStore1 = $user_id.time().rand(0,9999).'.'.$extension;
                 // upload image
-                #$path = $request->file('image1')->storeAs($file_path,$filenameToStore1,'s3');
-                #$path = $request->file('image1')->store($file_path, 's3');
-                Storage::disk('s3')->put($file_path, $request->file(('image1')));
+                $path = $request->file('image1')->storeAs($file_path,$filenameToStore1,'s3');
             } else {
                 $filenameToStore1 = null;
             }
@@ -53,7 +51,7 @@ class PostsController extends Controller
                 $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
                 $extension = $request->file('image2')->getClientOriginalExtension();
                 $filenameToStore2 = $user_id.time().rand(0,9999).'.'.$extension;
-                $path = $request->file('image2')->storeAs($file_path,$filenameToStore2);
+                $path = $request->file('image2')->storeAs($file_path,$filenameToStore2,'s3');
             } else {
                 $filenameToStore2 = null;
             }
@@ -63,7 +61,7 @@ class PostsController extends Controller
                 $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
                 $extension = $request->file('image3')->getClientOriginalExtension();
                 $filenameToStore3 = $user_id.time().rand(0,9999).'.'.$extension;
-                $path = $request->file('image3')->storeAs($file_path,$filenameToStore3);
+                $path = $request->file('image3')->storeAs($file_path,$filenameToStore3, 's3');
             } else {
                 $filenameToStore3 = null;
             }
@@ -73,7 +71,7 @@ class PostsController extends Controller
                 $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
                 $extension = $request->file('image4')->getClientOriginalExtension();
                 $filenameToStore4 = $user_id.time().rand(0,9999).'.'.$extension;
-                $path = $request->file('image4')->storeAs($file_path,$filenameToStore4);
+                $path = $request->file('image4')->storeAs($file_path,$filenameToStore4, 's3');
             } else {
                 $filenameToStore4 = null;
             }
@@ -83,7 +81,7 @@ class PostsController extends Controller
                 $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
                 $extension = $request->file('image5')->getClientOriginalExtension();
                 $filenameToStore5 = $user_id.time().rand(0,9999).'.'.$extension;
-                $path = $request->file('image5')->storeAs($file_path,$filenameToStore5);
+                $path = $request->file('image5')->storeAs($file_path,$filenameToStore5, 's3');
             } else {
                 $filenameToStore5 = null;
             }
