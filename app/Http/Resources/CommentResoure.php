@@ -22,6 +22,8 @@ class CommentResoure extends JsonResource
             'username' => CommonController::userName($this->commentBy),
             'profile_picture' => CommonController::userProfile($this->commentBy),
             'comment' => $this->comment,
+            'likes_count' => CommonController::likesCount($this->commentOn),
+            'comments_count' => CommonController::commentsCount($this->commentOn),
             'created_at' => $this->created_at
         ];
     }
