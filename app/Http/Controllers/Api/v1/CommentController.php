@@ -70,7 +70,9 @@ class CommentController extends Controller
             Comment::where([ ['commentBy' , Auth::user()->id], ['id' , $request->comment_id] ])->delete();
             Post::where('id', $request->post_id)->decrement('comments_count',1);
             $comment = Comment::where('commentOn', $request->post_id)->orderBy('created_at','DESC')->paginate(10);
-            return response()->json(["status" => 200,"message" => CommentResoure::collection($comment), "links" => $comment ], 200);
+            return response()->json(["status" => 200,"message" => CommentResoure::collection($comment),
+                "likes_count" => CommonController::likesCount($request->post_id), "comments_count" => CommonController::commentsCount($request->post_id) ,
+                "links" => $comment ], 200);
         }
     }
 }
