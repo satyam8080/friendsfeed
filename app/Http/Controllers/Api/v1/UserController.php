@@ -98,7 +98,7 @@ class UserController extends Controller
               //filename to store
               $filenameToStore = $user_id.time().rand(0,9999).'.'.$extension;
               // upload image
-              $path = $request->file('image')->storeAs($file_path,$filenameToStore);
+              $path = $request->file('image')->storeAs($file_path,$filenameToStore, 's3');
           } else {
               $filenameToStore = null;
           }

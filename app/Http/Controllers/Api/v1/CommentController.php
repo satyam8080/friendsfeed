@@ -30,7 +30,7 @@ class CommentController extends Controller
                 'comment' => $request->comment
             ]);
             Post::where('id', $request->post_id)->increment('comments_count',1);
-            $comment = Comment::orderBy('created_at','DESC')->paginate(10);
+            $comment = Comment::where('commentOn', $request->post_id)->orderBy('created_at','DESC')->paginate(10);
             if (count($comment) == 0){
                 return response()->json(["status" => 404,"message" => "Unable to post comment" ], 404);
             }
@@ -50,7 +50,7 @@ class CommentController extends Controller
         } else {
             $comment = Comment::where('commentOn', $request->post_id)->orderBy('created_at', 'DESC')->paginate(10);
             if (count($comment) == 0) {
-                return response()->json(["status" => 404, "message" => "Unable to post comment"], 404);
+                return response()->json(["status" => 404, "message" => "No comment for this post"], 404);
             }
             return response()->json(["status" => 200, "message" => CommentResoure::collection($comment), "links" => $comment], 200);
         }
@@ -69,7 +69,7 @@ class CommentController extends Controller
         } else{
             Comment::where([ ['commentBy' , Auth::user()->id], ['id' , $request->comment_id] ])->delete();
             Post::where('id', $request->post_id)->decrement('comments_count',1);
-            $comment = Comment::orderBy('created_at','DESC')->paginate(10);
+            $comment = Comment::where('commentOn', $request->post_id)->orderBy('created_at','DESC')->paginate(10);
             return response()->json(["status" => 200,"message" => CommentResoure::collection($comment), "links" => $comment ], 200);
         }
     }
