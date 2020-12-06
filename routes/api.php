@@ -43,10 +43,17 @@ Route::middleware('auth:api')->group(function () {
         Route::get('all','Api\v1\UserController@index');
         Route::get('search','Api\v1\SearchController@search');
         Route::get('get','Api\v1\PostsController@get');
+        Route::get('post/comments','Api\v1\CommentController@getComment');
+
+
         Route::post('post','Api\v1\PostsController@store');
         Route::post('like','Api\v1\LikeController@postLike');
         Route::post('follow','Api\v1\FollowController@follow');
         Route::post('changeProfilePicture','Api\v1\UserController@changeProfilePicture');
+        Route::post('post/comments','Api\v1\CommentController@comment');
+
+
+        Route::delete('post/comments','Api\v1\CommentController@deleteComment');
     });
 });
 

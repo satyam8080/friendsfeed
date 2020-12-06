@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
@@ -40,7 +41,9 @@ class PostsController extends Controller
                 //filename to store
                 $filenameToStore1 = $user_id.time().rand(0,9999).'.'.$extension;
                 // upload image
-                $path = $request->file('image1')->storeAs($file_path,$filenameToStore1);
+                #$path = $request->file('image1')->storeAs($file_path,$filenameToStore1,'s3');
+                #$path = $request->file('image1')->store($file_path, 's3');
+                Storage::disk('s3')->put($file_path, $request->file(('image1')));
             } else {
                 $filenameToStore1 = null;
             }
@@ -96,7 +99,7 @@ class PostsController extends Controller
             ]);
             $create_id = $create->id;
             $post = Post::where('id', $create_id)->get();
-            Artisan::call('storage:link');
+            #Artisan::call('storage:link');
             return response()->json(["status" => 200,"message" => PostsResource::collection($post) ], 200);
         }
     }
