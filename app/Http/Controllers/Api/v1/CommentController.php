@@ -71,6 +71,10 @@ class CommentController extends Controller
         if ($validator->fails()) {
             return response()->json(["status" => 404,"message" => $validator->errors()], 404);
         } else{
+            $check = Comment::where([ ['commentBy' , Auth::user()->id], ['id' , $request->comment_id] ])->get();
+            if (count($check) == 0){
+                return response()->json(["status" => 406 ,"message" => "Comment not present or already deleted "], 406);
+            }
             Comment::where([ ['commentBy' , Auth::user()->id], ['id' , $request->comment_id] ])->delete();
             Post::where('id', $request->post_id)->decrement('comments_count',1);
             $comment = Comment::where('commentOn', $request->post_id)->orderBy('created_at','DESC')->paginate(10);
