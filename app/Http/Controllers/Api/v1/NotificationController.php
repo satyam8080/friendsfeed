@@ -12,7 +12,7 @@ class NotificationController extends Controller
 {
     public static function getNotifications(Request $request)
     {
-        $notifications = Notification::where('on', Auth::user()->id)->orderBy('created_at', 'DESC')->paginate(10);
+        $notifications = Notification::where('destination_user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->paginate(10);
         if (count($notifications) == 0) {
             return response()->json(["status" => 404, "message" => "No notification found"], 404);
         } else {
