@@ -18,6 +18,7 @@ class CreateNotificationsTable extends Migration
             $table->enum('type',['like', 'comment', 'follow']);
             $table->bigInteger('by');
             $table->bigInteger('on');
+            $table->bigInteger('destination_user_id');
             $table->enum('seen',['yes', 'no'])->default('no');
             $table->timestamps();
         });

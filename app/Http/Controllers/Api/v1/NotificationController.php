@@ -21,11 +21,12 @@ class NotificationController extends Controller
     }
 
 
-    public static function like($like_on){
+    public static function like($like_on, $user_id){
         Notification::create([
             'type' => "like",
             'by' => Auth::user()->id,
-            'on' => $like_on
+            'on' => $like_on,
+            'destination_user_id' => $user_id
         ]);
         return null;
     }
@@ -37,11 +38,12 @@ class NotificationController extends Controller
     }
 
 
-    public static function comment($comment_on){
+    public static function comment($comment_on, $user_id){
         Notification::create([
             'type' => "comment",
             'by' => Auth::user()->id,
-            'on' => $comment_on
+            'on' => $comment_on,
+            'destination_user_id' => $user_id
         ]);
         return null;
     }
@@ -57,14 +59,15 @@ class NotificationController extends Controller
         Notification::create([
             'type' => "follow",
             'by' => Auth::user()->id,
-            'on' => $user_id
+            'on' => $user_id,
+            'destination_user_id' => $user_id
         ]);
         return null;
     }
 
 
     public static function unFollow($user_id){
-        Notification::where([['by', Auth::user()->id], ['on', $user_id]])->delete();
+        Notification::where([['by', Auth::user()->id], ['destination_user_id', $user_id]])->delete();
         return null;
     }
 }

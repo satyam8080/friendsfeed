@@ -14,7 +14,8 @@ class LikeController extends Controller
 {
     public static function postLike(Request $request){
         $rules = [
-            'post_id'	=>	'required'
+            'post_id'	=>	'required',
+            'post_user_id' => 'required'
         ];
 
         $validator = Validator::make($request->all(),$rules);
@@ -37,7 +38,7 @@ class LikeController extends Controller
                     'likeOn' => $request->post_id
                 ]);
                 Post::where('id', $request->post_id)->increment('likes_count',1);
-                NotificationController::like($request->post_id);
+                NotificationController::like($request->post_id, $request->post_user_id);
                 $post = Post::where('id', $request->post_id)->get();
 
                 return response()->json(["status" => 200,"message" => PostsResource::collection($post)], 200);

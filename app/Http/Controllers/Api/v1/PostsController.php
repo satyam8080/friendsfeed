@@ -122,7 +122,7 @@ class PostsController extends Controller
         $data = [
             'id' => $user[0]->id,
             'name' => $user[0]->name,
-            'username' => $user[0]->username,
+            'username' => "@".$user[0]->username,
             'profileImage' => !empty($user[0]->profileImage) ? Storage::disk('s3')->url('public/users/'.$user[0]->id.'/profile/images/'.$user[0]->profileImage) : null
         ];
         return $data;
