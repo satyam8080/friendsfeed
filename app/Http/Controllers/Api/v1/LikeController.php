@@ -27,7 +27,7 @@ class LikeController extends Controller
                 # Dislike
                 Like::where([ ['likeBy' , Auth::user()->id], ['likeOn' , $request->post_id] ])->delete();
                 Post::where('id', $request->post_id)->decrement('likes_count',1);
-                NotificationController::unLike($request->post_id);
+                NotificationController::unLike($request->post_id, $request->post_user_id);
                 $post = Post::where('id', $request->post_id)->get();
 
                 return response()->json(["status" => 200,"message" => PostsResource::collection($post)], 200);

@@ -22,6 +22,9 @@ class NotificationController extends Controller
 
 
     public static function like($like_on, $user_id){
+        if ($user_id == Auth::user()->id){
+            return null;
+        }
         Notification::create([
             'type' => "like",
             'by' => Auth::user()->id,
@@ -32,13 +35,19 @@ class NotificationController extends Controller
     }
 
 
-    public static function unLike($like_on){
+    public static function unLike($like_on, $user_id){
+        if ($user_id == Auth::user()->id){
+            return null;
+        }
         Notification::where([['by', Auth::user()->id], ['on', $like_on]])->delete();
         return null;
     }
 
 
     public static function comment($comment_on, $user_id){
+        if ($user_id == Auth::user()->id){
+            return null;
+        }
         Notification::create([
             'type' => "comment",
             'by' => Auth::user()->id,
@@ -49,7 +58,10 @@ class NotificationController extends Controller
     }
 
 
-    public static function deleteComment($comment_on){
+    public static function deleteComment($comment_on, $user_id){
+        if ($user_id == Auth::user()->id){
+            return null;
+        }
         Notification::where([['by', Auth::user()->id], ['on', $comment_on]])->delete();
         return null;
     }
