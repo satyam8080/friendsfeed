@@ -30,6 +30,7 @@ class CommentController extends Controller
                 'comment' => $request->comment
             ]);
             Post::where('id', $request->post_id)->increment('comments_count',1);
+            NotificationController::comment($request->post_id);
             $comment = Comment::where('commentOn', $request->post_id)->orderBy('created_at','DESC')->paginate(10);
             if (count($comment) == 0){
                 return response()->json(["status" => 404,"message" => "Unable to post comment" ], 404);
@@ -77,6 +78,7 @@ class CommentController extends Controller
             }
             Comment::where([ ['commentBy' , Auth::user()->id], ['id' , $request->comment_id] ])->delete();
             Post::where('id', $request->post_id)->decrement('comments_count',1);
+            NotificationController::deleteComment($request->post_id);
             $comment = Comment::where('commentOn', $request->post_id)->orderBy('created_at','DESC')->paginate(10);
             return response()->json(["status" => 200,"message" => CommentResoure::collection($comment),
                 "likes_count" => CommonController::likesCount($request->post_id), "comments_count" => CommonController::commentsCount($request->post_id) ,

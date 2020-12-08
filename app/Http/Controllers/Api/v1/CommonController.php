@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Like;
 use App\Models\Post;
 use App\User;
-use Illuminate\Http\Request;
 
 class CommonController extends Controller
 {
@@ -56,6 +54,26 @@ class CommonController extends Controller
             return null;
         }else{
             return $post[0]->comments_count;
+        }
+    }
+
+
+    public static function postObject($post_id){
+        $post = Post::where('id', $post_id)->get();
+        if (count($post) == 0){
+            return null;
+        }else{
+            return $post;
+        }
+    }
+
+
+    public static function userObject($post_id){
+        $post = Post::where('id', $post_id)->get();
+        if (count($post) == 0){
+            return null;
+        }else{
+            return $post;
         }
     }
 }

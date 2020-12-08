@@ -8,9 +8,7 @@ use App\Models\Followers;
 use App\Models\Post;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller

@@ -29,19 +29,23 @@ class FollowController extends Controller
             }
             $follow = Followers::where([ ['follow_by' , Auth::user()->id], ['follow_on' , $request->user_id] ])->get();
             if (count($follow) == 0){
+                # Follow
                 Followers::create([
                     'follow_by' => Auth::user()->id ,
                     'follow_on' => $request->user_id
                 ]);
                 User::where('id', Auth::user()->id)->increment('following',1);
                 User::where('id', $request->user_id)->increment('followers',1);
+                NotificationController::follow($request->user_id);
 
                 $user = User::where('id', $request->user_id)->get();
                 return response()->json(["status" => 200,"message" => UserResource::collection($user) ], 200);
             } else{
+                # Unfollow
                 Followers::where([ ['follow_by' , Auth::user()->id], ['follow_on' , $request->user_id] ])->delete();
                 User::where('id', Auth::user()->id)->decrement('following',1);
                 User::where('id', $request->user_id)->decrement('followers',1);
+                NotificationController::unFollow($request->user_id);
 
                 $user = User::where('id', $request->user_id)->get();
                 return response()->json(["status" => 200,"message" => UserResource::collection($user) ], 200);

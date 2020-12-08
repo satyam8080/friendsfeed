@@ -44,6 +44,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('search','Api\v1\SearchController@search');
         Route::get('get','Api\v1\PostsController@get');
         Route::get('post/comments','Api\v1\CommentController@getComment');
+        Route::get('notifications','Api\v1\NotificationController@getNotifications');
 
 
         Route::post('post','Api\v1\PostsController@store');

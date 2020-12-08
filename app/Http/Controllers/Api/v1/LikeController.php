@@ -23,17 +23,21 @@ class LikeController extends Controller
         } else{
             $like = Like::where([ ['likeBy' , Auth::user()->id], ['likeOn' , $request->post_id] ])->get();
             if (count($like)){
+                # Dislike
                 Like::where([ ['likeBy' , Auth::user()->id], ['likeOn' , $request->post_id] ])->delete();
                 Post::where('id', $request->post_id)->decrement('likes_count',1);
+                NotificationController::unLike($request->post_id);
                 $post = Post::where('id', $request->post_id)->get();
 
                 return response()->json(["status" => 200,"message" => PostsResource::collection($post)], 200);
             } else{
+                # Like
                 Like::create([
                     'likeBy' => Auth::user()->id,
                     'likeOn' => $request->post_id
                 ]);
                 Post::where('id', $request->post_id)->increment('likes_count',1);
+                NotificationController::like($request->post_id);
                 $post = Post::where('id', $request->post_id)->get();
 
                 return response()->json(["status" => 200,"message" => PostsResource::collection($post)], 200);
