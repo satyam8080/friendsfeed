@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
@@ -122,7 +123,7 @@ class PostsController extends Controller
             'id' => $user[0]->id,
             'name' => $user[0]->name,
             'username' => $user[0]->username,
-            'profileImage' => !empty($user[0]->profileImage) ? env('APP_URL')."/storage/users/".$user[0]->id."/profile/images/".$user[0]->profileImage : null
+            'profileImage' => !empty($user[0]->profileImage) ? Storage::disk('s3')->url('public/users/'.$user[0]->id.'/profile/images/'.$user[0]->profileImage) : null
         ];
         return $data;
     }

@@ -26,7 +26,7 @@ class NotificationResource extends JsonResource
         } elseif ($this->type == "follow"){
             $message = CommonController::name($this->by)." started following you";
             $object = null;
-            $user_id = $this->on;
+            $user_id = $this->by;
         }
 
 
@@ -35,7 +35,7 @@ class NotificationResource extends JsonResource
             'type' => $this->type,
             'notification' => $message,
             'post' => $object,
-            'user_id' => $user_id,
+            'followed_by' => $user_id,
             'seen' => $this->seen,
             'created_at' => $this->created_at
         ];
