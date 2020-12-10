@@ -80,6 +80,10 @@ class CommentController extends Controller
             Post::where('id', $request->post_id)->decrement('comments_count',1);
             NotificationController::deleteComment($request->post_id, $request->post_user_id);
             $comment = Comment::where('commentOn', $request->post_id)->orderBy('created_at','DESC')->paginate(10);
+
+            if (count($comment) == 0){
+                return response()->json(["status" => 404 ,"message" => "No comment found "], 404);
+            }
             return response()->json(["status" => 200,"message" => CommentResoure::collection($comment),
                 "likes_count" => CommonController::likesCount($request->post_id), "comments_count" => CommonController::commentsCount($request->post_id) ,
                 "links" => $comment ], 200);

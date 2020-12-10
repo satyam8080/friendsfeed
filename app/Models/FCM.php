@@ -12,9 +12,8 @@ class FCM extends Model
         $url = 'https://fcm.googleapis.com/fcm/send';
 
         $headers = array(
-            'Authorization: key='."BK55n4FkD564kwn0TGvO0-8Gfj51M3IBlV_OyhtTnKTNr3pl9RvNm62u6dzpSEaJ0baqegfUVcZZy5-Aatk19To
-",
-            'Content-Type: application/json'
+            "Content-Type" => "application/json",
+            "Authorization" => "key=AAAA9Dk7XbI:APA91bFBzw1EOVW2c_wZrVxVBpNtvw0N-GpP_0kivfw9CmzVxy7tQ3OW4RTI2RBA6QrotCj70-RI9viLWGca6__Ieg1YA7wXMTLjDEs3XojObKLuZURR9eu9XBpOq3K7OOd3KAlDy18x"
         );
 
         $ch = curl_init();
