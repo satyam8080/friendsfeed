@@ -25,6 +25,7 @@ Route::get('/link', function () {
 });
 
 Route::prefix('users')->group(function () {
+    Route::get('fcm','Api\v1\FCMController@sendNotification');
     Route::post('register','Api\v1\RegisterController@register');
     Route::post('login', 'Api\v1\LoginController@login');
     Route::post('verifyOtp','Api\v1\VerifyOtpController@RegisterVerify');
@@ -45,6 +46,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('get','Api\v1\PostsController@get');
         Route::get('post/comments','Api\v1\CommentController@getComment');
         Route::get('notifications','Api\v1\NotificationController@getNotifications');
+
 
 
         Route::post('post','Api\v1\PostsController@store');

@@ -39,7 +39,7 @@ class NotificationController extends Controller
         if ($user_id == Auth::user()->id){
             return null;
         }
-        Notification::where([['by', Auth::user()->id], ['on', $like_on]])->delete();
+        Notification::where([['type', 'like'], ['by', Auth::user()->id], ['on', $like_on]])->delete();
         return null;
     }
 
@@ -62,7 +62,7 @@ class NotificationController extends Controller
         if ($user_id == Auth::user()->id){
             return null;
         }
-        Notification::where([['by', Auth::user()->id], ['on', $comment_on]])->delete();
+        Notification::where([['type', 'comment'], ['by', Auth::user()->id], ['on', $comment_on]])->delete();
         return null;
     }
 
@@ -79,7 +79,7 @@ class NotificationController extends Controller
 
 
     public static function unFollow($user_id){
-        Notification::where([['by', Auth::user()->id], ['destination_user_id', $user_id]])->delete();
+        Notification::where([['type', 'follow'], ['by', Auth::user()->id], ['destination_user_id', $user_id]])->delete();
         return null;
     }
 }
