@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class CommonController extends Controller
 {
@@ -75,5 +76,15 @@ class CommonController extends Controller
         }else{
             return $post;
         }
+    }
+
+    public static function firstName(){
+        $lastSpace = strpos(Auth::user()->name ," ");
+        if($lastSpace == FALSE) {
+            $firstName = Auth::user()->name;
+        }else {
+            $firstName = substr(Auth::user()->name ,0,$lastSpace);
+        }
+        return $firstName;
     }
 }

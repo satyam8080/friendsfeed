@@ -82,4 +82,9 @@ class NotificationController extends Controller
         Notification::where([['type', 'follow'], ['by', Auth::user()->id], ['destination_user_id', $user_id]])->delete();
         return null;
     }
+
+
+    public static function count(){
+        return Notification::where([['destination_user_id', Auth::user()->id], ['seen', 'no']])->count();
+    }
 }
