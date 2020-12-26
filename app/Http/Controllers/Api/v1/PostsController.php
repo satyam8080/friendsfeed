@@ -127,4 +127,16 @@ class PostsController extends Controller
         ];
         return $data;
     }
+
+
+    public static function getPostById(Request $request, $id){
+        if (empty($id)){
+            return response()->json(["status" => 404,"message" => "Please provide id for the post" ], 404);
+        }
+        $posts = Post::where('id',$id)->paginate(5);
+        if (count($posts) == 0){
+            return response()->json(["status" => 404,"message" => "No post found" ], 404);
+        }
+        return response()->json(["status" => 200,"message" => PostsResource::collection($posts), "links" => $posts ], 200);
+    }
 }

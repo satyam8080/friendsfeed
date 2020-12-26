@@ -47,6 +47,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('post/comments','Api\v1\CommentController@getComment');
         Route::get('notifications','Api\v1\NotificationController@getNotifications');
         Route::get('header','Api\v1\HeaderController@header');
+        Route::get('post/{id}','Api\v1\PostsController@getPostById');
 
 
 
